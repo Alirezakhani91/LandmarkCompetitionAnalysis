@@ -79,6 +79,50 @@
 @media(max-width:1250px){.v9-filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:690px){.v9-filters{grid-template-columns:1fr}}
 
+
+/* V12 — City Intelligence. Additive: existing V11 dashboard remains intact. */
+.city-toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:16px 0 20px}
+.city-toolbar label{display:flex;flex-direction:column;gap:7px;flex:1;min-width:150px;color:#697e8f;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.city-select{background:#fff;border:1px solid #d6e2e8;border-radius:10px;padding:12px 12px;color:#1b4052;min-height:43px;width:100%;max-width:100%;font-weight:650;font-size:12px;letter-spacing:0;text-transform:none}
+.city-inline-filter{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:10px 0 18px;padding:14px 17px;background:#fff;border:1px solid #e4edf0;border-radius:13px}
+.city-inline-filter label{color:#537383;font-weight:740;font-size:11px}
+.city-inline-filter select{width:auto;max-width:320px;min-width:230px}
+.city-inline-filter .city-hint{color:#788e9e;font-size:10px;line-height:1.6}
+.city-hero{background:linear-gradient(115deg,#103347,#194b57 78%,#116b6b);padding:32px 36px;border-radius:22px;color:white;display:flex;gap:20px;justify-content:space-between;align-items:center;position:relative;overflow:hidden}
+.city-hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;border:45px solid #ffffff0c;right:-86px;top:-92px}
+.city-hero h1{font-size:clamp(28px,3.5vw,45px);line-height:1.08;letter-spacing:-.045em;margin:11px 0 12px}.city-hero h1 em{color:#92e1d1;font-style:normal}
+.city-hero p{color:#bdd5d9;line-height:1.7;font-size:12px;max-width:760px;margin:0}
+.city-kicker{font-size:10px;letter-spacing:.17em;color:#92eadb;font-weight:850}
+.city-chip{border:1px solid #ffffff2c;color:#b3f1e4;padding:10px 13px;border-radius:22px;background:#ffffff12;font-size:10px;white-space:nowrap;z-index:1}
+.city-cardgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:16px 0}
+.city-marketcard{background:#fff;border-radius:18px;border:1px solid #e1ecef;padding:22px 24px;box-shadow:var(--shadow);min-width:0}
+.city-marketcard-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.city-marketcard h3{margin:5px 0 0;font-size:22px;letter-spacing:-.035em}
+.city-marketcard .city-province{font-size:10px;color:#8497a1;margin-top:5px}
+.city-market-value{font-size:38px;font-weight:820;letter-spacing:-.055em;margin:20px 0 4px;line-height:1}
+.city-market-caption{font-size:11px;color:#6e8290;margin-top:8px;line-height:1.55}
+.city-mini-metrics{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;border-top:1px solid #e8eff1;padding-top:15px;color:#607d8d;font-size:11px}
+.city-mini-metrics b{color:#1e4b58;font-size:13px}
+.city-alert{background:#fff7eb;border:1px solid #f0dfc2;color:#886b3f;padding:12px 14px;border-radius:11px;font-size:11px;line-height:1.7;margin:12px 0}
+.city-alert.good{background:#eaf8f5;border-color:#ceeee7;color:#286f69}
+.city-bars{display:grid;gap:19px;margin-top:25px}
+.city-bar-row{display:grid;grid-template-columns:145px minmax(0,1fr) 125px;gap:12px;align-items:center}
+.city-bar-row .city-name{font-weight:750;font-size:11px;overflow-wrap:anywhere}
+.city-bar-track{height:18px;border-radius:8px;background:#edf3f6;overflow:hidden}
+.city-bar-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#1c8f8d,#31c0aa)}
+.city-bar-fill.alt{background:linear-gradient(90deg,#f0ab80,#d78a65)}
+.city-bar-number{text-align:right;font-weight:760;font-size:12px}
+.city-delta{font-size:14px;color:#1a6569;font-weight:800;margin-top:22px}
+.city-table-wrap{width:100%;overflow:auto}.city-table{width:100%;border-collapse:collapse;min-width:650px;font-size:11px}
+.city-table th{text-align:left;padding:13px 11px;background:#f5f8f9;letter-spacing:.08em;font-weight:800;color:#8396a2;font-size:9px}
+.city-table td{border-bottom:1px solid #e9eff2;padding:13px 11px;vertical-align:top;color:#526d7b;line-height:1.55}
+.city-table td strong{color:#163647;font-size:12px}
+.city-tag{display:inline-flex;padding:6px 9px;background:#edf7f6;color:#107a72;border-radius:18px;font-size:10px;font-weight:750}
+.city-tag.no{background:#f1f4f6;color:#7a8793}
+.city-method{margin-top:15px;font-size:11px;line-height:1.85;color:#6b8291}
+@media(max-width:850px){.city-cardgrid{grid-template-columns:1fr}.city-hero{padding:28px 24px}.city-bar-row{grid-template-columns:100px minmax(0,1fr) 92px;gap:8px}.city-market-value{font-size:32px}}
+@media(max-width:560px){.city-toolbar label{min-width:100%}.city-inline-filter select{min-width:100%;width:100%}.city-bar-row{grid-template-columns:85px minmax(0,1fr) 84px}.city-hero .city-chip{display:none}}
+
 </style>
 </head>
 <body>
@@ -91,12 +135,13 @@
       <button type="button" class="nav-btn active" data-view="overview" title="Executive overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></svg><span>Executive overview</span></button>
       <button type="button" class="nav-btn" data-view="pricing" title="Price explorer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h4"/></svg><span>Price explorer</span></button>
       <button type="button" class="nav-btn" data-view="value" title="Annual Value Index"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18V6M4 18h17"/><path d="M8 15l4-5 3 2 4-7"/><circle cx="8" cy="15" r="1"/></svg><span>Annual Value Index</span></button>
+      <button type="button" class="nav-btn" data-view="cities" title="City intelligence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V8l6-3v16M13 21V3l6 3v15M8 10h1M8 14h1M16 9h1M16 13h1"/></svg><span>City intelligence</span></button>
       <button type="button" class="nav-btn" data-view="services" title="Service intelligence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l9 4.5-9 4.5L3 7.5 12 3zm-9 9 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg><span>Service intelligence</span></button>
       <button type="button" class="nav-btn" data-view="catalog" title="Offer library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18M3 12h18M3 19h18"/><path d="M7 3v18"/></svg><span>Offer library</span></button>
       <button type="button" class="nav-btn" data-view="evidence" title="Sources and coverage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h10l4 4v14H3V3h4z"/><path d="M8 12h8M8 16h8M8 8h3"/></svg><span>Sources & coverage</span></button>
     </nav>
     <div class="sidebar-bottom"><span class="dot"></span><b>Evidence-linked dataset</b><p><span id="sync-sidebar-date">Checking published data...</span><br>Public website observations. Prices can change. No private customer data.</p></div>
-    <div class="nav-note">SAINT JOHN · NEW BRUNSWICK</div>
+    <div class="nav-note">CANADA · MULTI-CITY INTELLIGENCE</div>
   </aside>
   <main class="main"><div class="main-inner">
     <div class="topbar"><div class="breadcrumbs">LANDMARK <strong>/ COMPETITIVE POSITION</strong></div><div class="top-right"><span class="top-chip"><span class="small-dot"></span>INTERACTIVE · <b id="sync-status">LOADING DATA</b></span><span class="top-chip" id="sync-date">CHECKING...</span></div></div>
@@ -122,6 +167,7 @@
     <section id="view-pricing" class="view">
       <div class="page-intro"><div><div class="section-kicker">Interactive price explorer</div><h1 class="title">Every size. <span style="color:#108e84">An honest comparison.</span></h1><p class="body">Select a Landmark product to see its published variants beside exact-size competitor offers. Only the same storage format with compatible climate status qualifies as a direct comparison.</p></div><span class="page-tag">NO INFERRED MARKET RANKS</span></div>
       <div class="selectors"><div class="switchbar" id="category-switch"><button type="button" data-cat="indoor_storage" class="selected">Indoor climate</button><button type="button" data-cat="drive_up">Drive-up</button><button type="button" data-cat="outdoor_parking">Outdoor parking</button></div><div class="switchbar" id="mode-switch"><button type="button" data-mode="regular" class="selected">Regular monthly</button><button type="button" data-mode="year1">Year-one scenario</button></div></div>
+      <div class="city-inline-filter"><label for="pricing-city">Compare Landmark with competitors in</label><select class="city-select" id="pricing-city" aria-label="Filter Price explorer competitors by city"></select><span class="city-hint">Landmark rates remain based in Saint John; only peer offers change.</span></div>
       <div class="size-row" id="size-switch" aria-label="Landmark storage size"></div>
       <div class="exp-layout"><article class="panel"><div class="panel-head"><div><div class="section-kicker">03 / Benchmark</div><h2 id="comparison-title">10 × 10 · indoor climate</h2><p class="sub" id="comparison-subtitle">Observed base rates, before tax and extra fees</p></div><span class="tiny-pill" id="comparison-tag">Like-for-like</span></div><div id="comparison-graph"></div></article>
       <article class="panel"><div class="panel-head"><div><div class="section-kicker">04 / Landmark inventory</div><h2 id="variant-title">Landmark offers</h2><p class="sub">Price cards from Landmark's public booking page</p></div><a class="dotlink" href="https://www.landmarknb.com/661-millidge-avenue-saint-john-nb-e2k-2n7" target="_blank" rel="noopener noreferrer">Official rates</a></div><div id="variant-list"></div></article></div>
@@ -135,7 +181,8 @@
       <div class="v9-size-heading"><span class="v9-label">02 / Unit size group</span><span id="v9-size-desc" class="v9-mini-info">Large · 150–&lt;300 ft² (13.94–&lt;27.87 m²)</span></div>
       <div class="v9-sizegroups" id="v9-sizegroups" role="group" aria-label="Choose unit size group"></div>
       <div class="v9-filters">
-        <label><span class="v9-label">03 / Geography</span><select class="v9-select" id="v9-region"><option value="all">All New Brunswick</option><option value="local">Greater Saint John</option></select></label>
+        <label><span class="v9-label">03 / Geography</span><select class="v9-select" id="v9-region"><option value="all">All registered locations</option><option value="local">Greater Saint John</option></select></label>
+        <label><span class="v9-label">City filter</span><select class="v9-select" id="v9-city" aria-label="Filter annual index by exact city"></select></label>
         <label><span class="v9-label">04 / Pricing model</span><select class="v9-select" id="v9-mode"><option value="regular">Regular annual rate</option><option value="first">Year 1 · known promotions</option></select></label>
         <label><span class="v9-label">05 / Average formula</span><select class="v9-select" id="v9-method"><option value="unit">Average unit price / area</option><option value="weighted">Total rent ÷ total area</option></select></label>
         <label><span class="v9-label">06 / Price area unit</span><select class="v9-select" id="v9-unit"><option value="ft2">CAD / ft² (default)</option><option value="m2">CAD / m²</option></select></label>
@@ -158,6 +205,31 @@
     </div>
     <div class="v9-bottomnote">Formula: average of (annualized advertised rate ÷ nominal unit area in the selected unit, ft² by default) across unique priced listings. Switch to “Total rent ÷ total area” to see the alternative catalog-area-weighted average. Monthly equivalents equal annual price per area ÷ 12. Each listing receives one vote; this is not occupied inventory weighting. All sources are clickable. Source classifications supported by website-level evidence may apply to a whole branch; incomplete periods are not estimated.</div>
   </section>
+
+    <section id="view-cities" class="view">
+      <div class="city-hero"><div><div class="city-kicker">GEOGRAPHY / CITY PRICE INTELLIGENCE</div><h1>Different cities.<br><em>Comparable prices.</em></h1><p>Compare published competitor base rents across two cities after matching storage specifications and unit size. City medians give each operator one vote—not each of its advertised units.</p></div><span class="city-chip">CITY-TO-CITY BENCHMARK</span></div>
+      <div class="panel sections">
+        <div class="panel-head"><div><div class="section-kicker">01 / Market selection</div><h2>Build your comparison</h2><p class="sub">Cities come from the published crawler dataset. Toronto is selectable as a future market, but has no rates until its facilities are crawled.</p></div><span class="tiny-pill">CAD · VERIFIED BASE</span></div>
+        <div class="city-toolbar">
+          <label>City A<select class="city-select" id="city-a" aria-label="Select first city"></select></label>
+          <label>City B<select class="city-select" id="city-b" aria-label="Select second city"></select></label>
+          <label>Storage category<select class="city-select" id="city-type" aria-label="Select matched storage category">
+            <option value="drive">Outdoor / drive-up · non-climate</option>
+            <option value="climate">Indoor · climate-controlled</option>
+            <option value="indoor">Indoor · non-climate</option>
+            <option value="climate_drive">Climate-controlled drive-up</option>
+            <option value="parking">Vehicle parking</option>
+            <option value="container">Storage containers</option>
+          </select></label>
+          <label>Unit size<select class="city-select" id="city-size" aria-label="Select size bracket"><option value="small">Small · &lt;75 ft²</option><option value="medium" selected>Medium · 75–&lt;150 ft²</option><option value="large">Large · 150–&lt;300 ft²</option><option value="xl">Extra Large · ≥300 ft²</option><option value="exact:5x5">Exact 5×5 ft</option><option value="exact:5x10">Exact 5×10 ft</option><option value="exact:10x10">Exact 10×10 ft</option><option value="exact:10x15">Exact 10×15 ft</option><option value="exact:10x20">Exact 10×20 ft</option><option value="all">All sizes · not like-for-like</option></select></label>
+        </div>
+        <div class="city-alert good" id="city-filter-note">Verified recurring base rates only · floor area calculated from published dimensions · 4 weeks = 13 periods/year.</div>
+      </div>
+      <div class="city-cardgrid" id="city-market-cards" aria-live="polite"></div>
+      <div class="panel sections"><div class="panel-head"><div><div class="section-kicker">02 / Normalized city comparison</div><h2>Annual CAD per ft²</h2><p class="sub">Median of operator-level averages within the same storage type and area bracket.</p></div><span class="tiny-pill">FT² / YEAR</span></div><div id="city-comparison-chart"></div></div>
+      <div class="panel sections"><div class="panel-head"><div><div class="section-kicker">03 / Operator evidence</div><h2>Company-by-company price index</h2><p class="sub">Each operator is shown separately with listing counts, source links and the selected city's price context.</p></div><span class="tiny-pill">SOURCE-LINKED</span></div><div class="city-table-wrap"><table class="city-table"><thead><tr><th>CITY</th><th>COMPANY</th><th>PRICED UNITS</th><th>AVG CAD/FT²/YR</th><th>CAD/FT²/MO</th><th>VERIFY</th></tr></thead><tbody id="city-operator-body"></tbody></table></div><div id="city-exclusion-note" class="city-method"></div></div>
+      <div class="notice"><strong>How to interpret:</strong> The benchmark uses unweighted averages of annualized price per ft² for a company's distinct, eligible advertised unit rates; the city figure is the median across companies. Promotional $1/week rates, unverified recurring periods, unknown access/climate classifications, missing dimensions and missing sources are excluded. If fewer than three companies qualify, the city result is a small-sample indicator—not a defensible market average. Landmark's own 28 unit cards are not treated as competitor offers. Cross-city differences do not account for tax, insurance, access hours, location quality or customer demand. New cities require real crawler observations.</div>
+    </section>
     <section id="view-services" class="view">
       <div class="page-intro"><div><div class="section-kicker">Service intelligence</div><h1 class="title">What they offer.<br><span style="color:#108e84">What we can prove.</span></h1><p class="body">We distinguish one confirmed Landmark limitation from offerings that are merely not documented on its public website. Every competitor claim includes a clickable official source.</p></div><span class="page-tag">NO ASSUMPTIONS FROM SILENCE</span></div>
       <div class="service-intro"><div class="service-overview"><span>CONFIRMED GAP</span><b>24/7 access</b><p>Landmark publishes 6 AM–11 PM; several operators advertise round-the-clock unit access.</p></div><div class="service-overview"><span>POLICIES TO VERIFY</span><b>3 key terms</b><p>Free lock, no deposit, and no administration fee are advertised by some peers, but Landmark's status is unverified.</p></div><div class="service-overview"><span>CONFIRMED LANDMARK OFFERINGS</span><b>Climate + convenience</b><p>Indoor storage, elevator, moving supplies, business center and package receiving are published by Landmark.</p></div></div>
@@ -166,14 +238,14 @@
     </section>
     <section id="view-catalog" class="view">
       <div class="page-intro"><div><div class="section-kicker">Full competitor catalog</div><h1 class="title">The observed <span style="color:#108e84">rate library.</span></h1><p class="body">All published crawler price records, retained with their confidence and source links. Not every record is usable for a pricing decision.</p></div><span class="page-tag">PUBLIC SOURCE RECORDS</span></div>
-      <div class="panel"><div class="catalog-toolbar"><input class="search" type="search" id="offer-search" placeholder="Search brand, branch or size..." aria-label="Search offers"><select class="select" id="offer-scope" aria-label="Location filter"><option value="all">All New Brunswick</option><option value="direct">Greater Saint John</option></select><select class="select" id="offer-quality" aria-label="Price quality filter"><option value="all">All price records</option><option value="priced">Usable base rates</option><option value="review">Requires review</option></select></div><div class="table-wrap"><table class="table" aria-label="Competitor prices"><thead><tr><th>Operator / location</th><th>Size</th><th>Product</th><th>Advertised base</th><th>Intro offer</th><th>Monthly equivalent</th><th>Data quality</th><th>Evidence</th></tr></thead><tbody id="offer-body"></tbody></table></div><div class="pager"><span id="offer-paging"></span><div><button type="button" id="offers-prev">Previous</button> <button type="button" id="offers-next">Next</button></div></div></div>
+      <div class="panel"><div class="catalog-toolbar"><input class="search" type="search" id="offer-search" placeholder="Search brand, branch or size..." aria-label="Search offers"><select class="select" id="offer-scope" aria-label="Location filter"><option value="all">All registered locations</option><option value="direct">Greater Saint John</option></select><select class="select" id="offer-city" aria-label="Filter offer library by city"></select><select class="select" id="offer-quality" aria-label="Price quality filter"><option value="all">All price records</option><option value="priced">Usable base rates</option><option value="review">Requires review</option></select></div><div class="table-wrap"><table class="table" aria-label="Competitor prices"><thead><tr><th>Operator / location</th><th>Size</th><th>Product</th><th>Advertised base</th><th>Intro offer</th><th>Monthly equivalent</th><th>Data quality</th><th>Evidence</th></tr></thead><tbody id="offer-body"></tbody></table></div><div class="pager"><span id="offer-paging"></span><div><button type="button" id="offers-prev">Previous</button> <button type="button" id="offers-next">Next</button></div></div></div>
       <div class="notice"><strong>Read before comparing:</strong> Mini Mall introductory rates are not standard recurring rates; billing is every four weeks and additional charges may apply. An unpriced or ambiguous record is deliberately shown as “Review”, never as $0. Only branch-attributable Apple evidence is eligible; unknown billing terms and unmatched branches are excluded from firm rankings.</div>
     </section>
     <section id="view-evidence" class="view">
       <div class="page-intro"><div><div class="section-kicker">Data integrity</div><h1 class="title">The evidence <span style="color:#108e84">behind the view.</span></h1><p class="body">This report covers the current research registry, but live price observations exist for only a portion. Source coverage is not completeness.</p></div><span class="page-tag">AUDITABLE SNAPSHOT</span></div>
       <div class="panel"><div class="panel-head"><div><div class="section-kicker">06 / Coverage quality</div><h2>Registered facilities ≠ priced facilities.</h2><p class="sub">Most recently retained crawler classifications, with dates per source.</p></div></div><div id="coverage-numbers" class="grid4"></div><div class="coverage-progress" id="coverage-progress"></div><div class="coverage-legend" id="coverage-legend"></div></div>
       <div class="section-heading"><div><h2>Facility-by-facility status</h2><p>Open the original page directly from any row to review the claim.</p></div></div>
-      <div class="panel"><div class="catalog-toolbar"><input type="search" class="search" id="coverage-search" placeholder="Find a brand, branch or town..." aria-label="Search facilities"><select id="coverage-status" class="select" aria-label="Status filter"><option value="all">All crawl states</option><option value="priced">With price records</option><option value="unpriced">Without prices</option></select></div><div class="table-wrap"><table class="table"><thead><tr><th>Operator / branch</th><th>City</th><th>State</th><th>Pricing records</th><th>Pages accessed</th><th>Source</th></tr></thead><tbody id="coverage-body"></tbody></table></div><div class="pager"><span id="coverage-paging"></span><div><button type="button" id="coverage-prev">Previous</button> <button type="button" id="coverage-next">Next</button></div></div></div>
+      <div class="panel"><div class="catalog-toolbar"><input type="search" class="search" id="coverage-search" placeholder="Find a brand, branch or town..." aria-label="Search facilities"><select id="coverage-city" class="select" aria-label="Filter facility coverage by city"></select><select id="coverage-status" class="select" aria-label="Status filter"><option value="all">All crawl states</option><option value="priced">With price records</option><option value="unpriced">Without prices</option></select></div><div class="table-wrap"><table class="table"><thead><tr><th>Operator / branch</th><th>City</th><th>State</th><th>Pricing records</th><th>Pages accessed</th><th>Source</th></tr></thead><tbody id="coverage-body"></tbody></table></div><div class="pager"><span id="coverage-paging"></span><div><button type="button" id="coverage-prev">Previous</button> <button type="button" id="coverage-next">Next</button></div></div></div>
       <div class="section-heading"><div><h2>Primary sources</h2><p>Official websites used in the report; links open the publisher's current page.</p></div></div><div class="source-links"><a class="source-card" href="https://www.landmarknb.com/661-millidge-avenue-saint-john-nb-e2k-2n7" target="_blank" rel="noopener noreferrer">Landmark Storage NB ↗<span>Facility details & unit pricing</span></a><a class="source-card" href="https://grandbaystorage.ca/pricing" target="_blank" rel="noopener noreferrer">Grand Bay Self Storage ↗<span>Climate-controlled pricing</span></a><a class="source-card" href="https://www.jtrselfstorage.com/" target="_blank" rel="noopener noreferrer">JTR Self Storage ↗<span>24-hour access & smart locks</span></a><a class="source-card" href="https://www.neststorage.ca/" target="_blank" rel="noopener noreferrer">Nest Self Storage ↗<span>Rates and rental policies</span></a><a class="source-card" href="https://www.sjyoustore.ca/faq" target="_blank" rel="noopener noreferrer">Saint John You-Store ↗<span>24/7 access & no climate control</span></a><a class="source-card" href="https://minimallstorage.com/storage-units/new-brunswick/saint-john/golden-grove-road" target="_blank" rel="noopener noreferrer">Mini Mall Storage ↗<span>Four-week rates & promotions</span></a></div>
       <div class="notice"><strong>Scope:</strong> Dated public price and service observations; individual records may have different observation dates. This is not a survey of actual transactions, occupancy, tenant enquiries or sales. The report intentionally excludes unverified branch data and makes no claims about competitors' true sales or popularity. Verify pricing and conditions before taking commercial action.</div>
     </section>
@@ -199,7 +271,7 @@ const priceComparable=o=>n(o.base_normalized_month_cad)!==null&&n(o.base_normali
 const directCities=new Set(['Saint John','Grand Bay-Westfield','Rothesay','Hampton','Nauwigewauk / Hampton','Nauwigewauk']);
 const localIds=new Set(DATA.coverage.filter(x=>x.tier==='direct').map(x=>x.brand+'|'+x.branch));
 const localOffer=o=>localIds.has(o.brand+'|'+o.branch)||['Alloy Storage'].includes(o.brand);
-const curr={view:'overview',cat:'indoor_storage',size:'10×10',mode:'regular',service:'all',offerPage:0,coveragePage:0};
+const curr={view:'overview',cat:'indoor_storage',size:'10×10',mode:'regular',service:'all',offerPage:0,coveragePage:0,city:'all'};
 const isIndoor=u=>u.unit_type==='indoor_storage', isDrive=u=>u.unit_type==='drive_up', isParking=u=>u.unit_type==='outdoor_parking';
 const categoryUnits=()=>DATA.landmark.filter(x=>curr.cat==='indoor_storage'?isIndoor(x):curr.cat==='drive_up'?isDrive(x):isParking(x));
 const shapeId=o=>[n(o.width_ft),n(o.length_ft)].sort((a,b)=>a-b).join('x');
@@ -211,7 +283,7 @@ function kind(o,lm){
  if(lm.unit_type==='drive_up')return o.climate==='no'&&o.brand==='Mini Mall Storage'?'strict':o.brand==='Nest Self Storage'?'context':o.climate==='yes'?'different':'context';
  return 'context';
 }
-function setView(name){curr.view=name;$$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));if(name==='pricing')renderPricing();if(name==='value')v9Render();if(name==='services')renderServices();if(name==='catalog')renderOffers();if(name==='evidence')renderCoverage();window.scrollTo({top:0,behavior:'smooth'});}
+function setView(name){curr.view=name;$$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));if(name==='pricing')renderPricing();if(name==='cities')cityRender();if(name==='value')v9Render();if(name==='services')renderServices();if(name==='catalog')renderOffers();if(name==='evidence')renderCoverage();window.scrollTo({top:0,behavior:'smooth'});}
 $$('.nav-btn').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
 $$('[data-goto]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.goto)));
 function renderOverview(){
@@ -242,11 +314,11 @@ function renderPricing(){
  const units=categoryUnits().filter(u=>fmtSize(u)===curr.size);
  const category=curr.cat==='indoor_storage'?'climate-controlled indoor':curr.cat==='drive_up'?'drive-up, non-climate':'outdoor parking';
  $('#comparison-title').textContent=curr.size+' · '+category;
- $('#comparison-subtitle').textContent=curr.mode==='regular'?'Observed regular base rates, in CAD/month':'Landmark 12-month modeled average vs competitor published recurring base';
+ $('#comparison-subtitle').textContent=(curr.city==='all'?'All recorded cities':cityName(curr.city)+' peer market')+' · '+(curr.mode==='regular'?'Observed regular base rates, CAD/month':'Landmark 12-month modeled average vs competitor recurring base');
  $('#variant-title').textContent=units.length+' Landmark listing'+(units.length!==1?'s':'');
- const minMatched=units.length?Math.min(...DATA.offers.filter(o=>units.some(lm=>shapeId(o)===shapeId(lm)&&kind(o,lm)==='strict')).map(o=>o.base_normalized_month_cad).filter(x=>Number.isFinite(x))):Infinity;
+ const minMatched=units.length?Math.min(...DATA.offers.filter(o=>cityOfferFilter(o,curr.city)&&units.some(lm=>shapeId(o)===shapeId(lm)&&kind(o,lm)==='strict')).map(o=>o.base_normalized_month_cad).filter(x=>Number.isFinite(x))):Infinity;
  $('#variant-list').innerHTML=units.map(u=>`<div class="unit-variant"><div class="unit-variant-top"><b>${esc(u.level)} <span class="flag">${esc(u.unit_id)}</span></b><span class="amount">${money(u.regular_monthly_cad)}</span></div><div class="desc">${esc(u.product_labels)} · Public regular monthly rate</div>${Number.isFinite(minMatched)?`<div class="spotlight" style="margin:7px 0"><b>${( ( (curr.mode==='regular'?u.regular_monthly_cad:u.twelve_month_effective_avg_cad)/minMatched - 1)*100 ).toFixed(1)}% vs lowest compatible observed peer</b></div>`:''}<div class="mini-row"><span>Promo: ${u.promo_months?money(u.promo_monthly_cad)+' × '+u.promo_months+' mo':'Not displayed'}</span><span>Modeled Yr 1: <b>${money(u.twelve_month_effective_avg_cad)}/mo</b></span></div><div style="margin-top:10px">${a(u.source_url,'Check listing')}</div></div>`).join('');
- let all=DATA.offers.filter(o=>units.some(lm=>shapeId(o)===shapeId(lm))&&(curr.cat==='outdoor_parking'?o.unit_type==='parking':!['parking','container'].includes(o.unit_type)));
+ let all=DATA.offers.filter(o=>cityOfferFilter(o,curr.city)&&units.some(lm=>shapeId(o)===shapeId(lm))&&(curr.cat==='outdoor_parking'?o.unit_type==='parking':!['parking','container'].includes(o.unit_type)));
  let strict=all.filter(o=>units.some(u=>kind(o,u)==='strict'));let context=all.filter(o=>!strict.includes(o));
  const uniq=a=>{const seen=new Set();return a.filter(o=>{const id=[o.brand,o.branch,shapeId(o),o.base_normalized_month_cad,o.price_status].join('|');if(seen.has(id))return false;seen.add(id);return true;})};strict=uniq(strict).sort((a,b)=>a.base_normalized_month_cad-b.base_normalized_month_cad);context=uniq(context).sort((a,b)=>(a.base_normalized_month_cad??999999)-(b.base_normalized_month_cad??999999));
  $('#comparison-tag').textContent=strict.length?'Verified category match':'Limited comparison';$('#comparison-tag').classList.toggle('warn',!strict.length);
@@ -269,7 +341,7 @@ function renderPricing(){
  $('#comparison-graph').innerHTML=graph;
  $('#size-index').innerHTML=choices.map(s=>{
  const thisUnits=categoryUnits().filter(x=>fmtSize(x)===s);const minimum=Math.min(...thisUnits.map(x=>x.regular_monthly_cad));
- const has=DATA.offers.some(o=>thisUnits.some(lm=>shapeId(o)===shapeId(lm)&&kind(o,lm)==='strict'));
+ const has=DATA.offers.some(o=>cityOfferFilter(o,curr.city)&&thisUnits.some(lm=>shapeId(o)===shapeId(lm)&&kind(o,lm)==='strict'));
  return `<button type="button" class="mini-size" data-index-size="${esc(s)}"><span class="sz">${esc(s)}</span><span class="pr">From ${money(minimum)}/mo</span><span class="note ${has?'':'no'}">${has?'✓ Direct benchmark':'— No direct benchmark'}</span></button>`;}).join('');
  $$('#size-index button').forEach(b=>b.addEventListener('click',()=>{curr.size=b.dataset.indexSize;renderPricing();$('#view-pricing').scrollIntoView({behavior:'smooth'});}));
 }
@@ -286,35 +358,36 @@ function renderServices(){
 }
 $$('#service-filter button').forEach(b=>b.addEventListener('click',()=>{curr.service=b.dataset.service;renderServices();}));
 function offerFiltered(){
- const q=$('#offer-search').value.toLowerCase().trim(),scope=$('#offer-scope').value,quality=$('#offer-quality').value;
- return DATA.offers.filter(x=>(!q||[x.brand,x.branch,fmtSize(x),x.unit_type].some(s=>String(s||'').toLowerCase().includes(q)))&&(scope==='all'||localOffer(x))&&(quality==='all'||(quality==='priced'&&priceComparable(x))||(quality==='review'&&!priceComparable(x))));
+ const q=$('#offer-search').value.toLowerCase().trim(),scope=$('#offer-scope').value,quality=$('#offer-quality').value,city=$('#offer-city').value;
+ return DATA.offers.filter(x=>(!q||[x.brand,x.branch,fmtSize(x),x.unit_type].some(s=>String(s||'').toLowerCase().includes(q)))&&cityOfferFilter(x,city)&&(scope==='all'||localOffer(x))&&(quality==='all'||(quality==='priced'&&priceComparable(x))||(quality==='review'&&!priceComparable(x))));
 }
 function renderOffers(){const arr=offerFiltered(),size=12;const pages=Math.max(1,Math.ceil(arr.length/size));curr.offerPage=Math.min(curr.offerPage,pages-1);const page=arr.slice(curr.offerPage*size,(curr.offerPage+1)*size);
  $('#offer-body').innerHTML=page.map(x=>`<tr><td><strong>${esc(x.brand)}</strong><div class="small">${esc(x.branch)}</div></td><td><strong>${esc(fmtSize(x))}</strong></td><td>${esc(x.unit_type==='storage'?(x.climate==='yes'?'Climate-controlled':x.climate==='no'?'Non-climate':'Storage · unspecified'):titleCase(x.unit_type))}</td><td>${money(x.price_regular_cad)}<div class="small">${x.billing_period==='4_weeks'?'Per 4 weeks':x.billing_period==='month'?'Monthly':'Period unclear'}</div></td><td>${money(x.price_intro_cad)}<div class="small">${x.price_intro_cad===null?'Not verified':x.billing_period==='4_weeks'?'Per 4 weeks':'See terms'}</div></td><td><strong>${money(x.base_normalized_month_cad)}</strong></td><td><span class="flag ${priceComparable(x)?'':'warn'}">${priceComparable(x)?'Base rate':'Review required'}</span></td><td>${a(x.source_url,'Check rate')}</td></tr>`).join('')||'<tr><td colspan="8" style="text-align:center;padding:35px">No records match your filters.</td></tr>';
  $('#offer-paging').textContent=`${arr.length?curr.offerPage*size+1:0}–${Math.min((curr.offerPage+1)*size,arr.length)} of ${arr.length} records`;$('#offers-prev').disabled=curr.offerPage===0;$('#offers-next').disabled=curr.offerPage>=pages-1;}
-['offer-search','offer-scope','offer-quality'].forEach(id=>$('#'+id).addEventListener(id==='offer-search'?'input':'change',()=>{curr.offerPage=0;renderOffers();}));
+['offer-search','offer-scope','offer-quality','offer-city'].forEach(id=>$('#'+id).addEventListener(id==='offer-search'?'input':'change',()=>{curr.offerPage=0;renderOffers();}));
 $('#offers-prev').addEventListener('click',()=>{curr.offerPage--;renderOffers();});$('#offers-next').addEventListener('click',()=>{curr.offerPage++;renderOffers();});
 function renderCoverage(){
- const states=DATA.coverage.reduce((ac,r)=>{ac[r.status]=(ac[r.status]||0)+1;return ac},{});
+ const activeCoverage=DATA.coverage.filter(r=>cityOfferFilter(r,$('#coverage-city').value));
+ const states=activeCoverage.reduce((ac,r)=>{ac[r.status]=(ac[r.status]||0)+1;return ac},{});
  const palette={'priced':'#149b8b','services_only':'#7cafc0','needs_branch_page':'#d4a96a','parser_gap':'#9b87cf','no_public_prices':'#a7b7c2','robots_unavailable':'#e79e83','robots_restricted':'#dd786b','not_enabled_unverified':'#d7dfe5'};
  const groups=[['priced','With extracted prices'],['services_only','Services only'],['needs_branch_page','Needs branch URL'],['parser_gap','Parser issue'],['not_enabled_unverified','Unverified / inactive'],['no_public_prices','No public prices'],['robots_unavailable','Robots unavailable'],['robots_restricted','Robots restricted']];
- $('#coverage-numbers').innerHTML=[['Registered facilities',DATA.coverage.length],['With price records',states.priced||0],['Service-only locations',states.services_only||0],['Branch-page / parser gaps',(states.needs_branch_page||0)+(states.parser_gap||0)]].map(x=>`<div class="metric"><div class="metric-label">${x[0]}</div><div class="metric-num">${x[1]}</div></div>`).join('');
- $('#coverage-progress').innerHTML=groups.filter(g=>states[g[0]]).map(g=>`<span style="width:${states[g[0]]/DATA.coverage.length*100}%;background:${palette[g[0]]}" title="${g[1]}: ${states[g[0]]}"></span>`).join('');
+ $('#coverage-numbers').innerHTML=[['Registered facilities',activeCoverage.length],['With price records',states.priced||0],['Service-only locations',states.services_only||0],['Branch-page / parser gaps',(states.needs_branch_page||0)+(states.parser_gap||0)]].map(x=>`<div class="metric"><div class="metric-label">${x[0]}</div><div class="metric-num">${x[1]}</div></div>`).join('');
+ $('#coverage-progress').innerHTML=groups.filter(g=>states[g[0]]).map(g=>`<span style="width:${states[g[0]]/Math.max(1,activeCoverage.length)*100}%;background:${palette[g[0]]}" title="${g[1]}: ${states[g[0]]}"></span>`).join('');
  $('#coverage-legend').innerHTML=groups.filter(g=>states[g[0]]).map(g=>`<span><i style="background:${palette[g[0]]}"></i>${g[1]}: ${states[g[0]]}</span>`).join('');
- const q=$('#coverage-search').value.toLowerCase().trim(),status=$('#coverage-status').value;
- const arr=DATA.coverage.filter(x=>(!q||[x.brand,x.branch,x.city].some(s=>String(s||'').toLowerCase().includes(q)))&&(status==='all'||(status==='priced'&&x.status==='priced')||(status==='unpriced'&&x.status!=='priced')));
+ const q=$('#coverage-search').value.toLowerCase().trim(),status=$('#coverage-status').value,city=$('#coverage-city').value;
+ const arr=DATA.coverage.filter(x=>cityOfferFilter(x,city)&&(!q||[x.brand,x.branch,x.city].some(s=>String(s||'').toLowerCase().includes(q)))&&(status==='all'||(status==='priced'&&x.status==='priced')||(status==='unpriced'&&x.status!=='priced')));
  const size=12,pages=Math.max(1,Math.ceil(arr.length/size));curr.coveragePage=Math.min(curr.coveragePage,pages-1);const part=arr.slice(curr.coveragePage*size,(curr.coveragePage+1)*size);
  $('#coverage-body').innerHTML=part.map(x=>`<tr><td><strong>${esc(x.brand)}</strong><div class="small">${esc(x.branch)}</div></td><td>${esc(x.city)}</td><td><span class="flag ${x.status==='priced'?'':x.status==='services_only'?'context':'warn'}">${esc(x.status.replace(/_/g,' '))}</span></td><td>${esc(x.known_price_records ?? x.live_prices_in_run)}<div class="small">latest run: ${esc(x.live_prices_in_run ?? 0)}</div></td><td>${esc(x.pages_accessible)} / ${esc(x.pages_checked)}</td><td>${x.brand==='Apple Self Storage'&&/\/self-storage\/on\//.test(x.url)?'<span class="flag warn" title="Redirected to Ontario; not valid Saint John branch proof">Wrong-province redirect</span>':a(x.url,'Source')}</td></tr>`).join('')||'<tr><td colspan="6" style="padding:30px;text-align:center">No matching facilities.</td></tr>';
  $('#coverage-paging').textContent=`${arr.length?curr.coveragePage*size+1:0}–${Math.min((curr.coveragePage+1)*size,arr.length)} of ${arr.length} facilities`;
  $('#coverage-prev').disabled=curr.coveragePage===0;$('#coverage-next').disabled=curr.coveragePage>=pages-1;
 }
-['coverage-search','coverage-status'].forEach(id=>$('#'+id).addEventListener(id==='coverage-search'?'input':'change',()=>{curr.coveragePage=0;renderCoverage();}));
+['coverage-search','coverage-status','coverage-city'].forEach(id=>$('#'+id).addEventListener(id==='coverage-search'?'input':'change',()=>{curr.coveragePage=0;renderCoverage();}));
 $('#coverage-prev').addEventListener('click',()=>{curr.coveragePage--;renderCoverage();});$('#coverage-next').addEventListener('click',()=>{curr.coveragePage++;renderCoverage();});
 renderOverview();renderPricing();renderServices();renderOffers();renderCoverage();
 
 /* V9 · CATEGORY-WIDE AVERAGE PRICE PER SQUARE METRE — snapshot 13 Nov 2026 */
 const VALUE_SQFT_TO_SQM=0.09290304;
-const v9State={cat:'drive',sizeGroup:'large',region:'all',mode:'regular',method:'unit',unit:'ft2',waitlist:true,fees:false};
+const v9State={cat:'drive',sizeGroup:'large',region:'all',city:'all',mode:'regular',method:'unit',unit:'ft2',waitlist:true,fees:false};
 const v9SizeGroups=[
  {id:'all',name:'All Sizes',range:'Any recorded size',min:0,max:Infinity},
  {id:'small',name:'Small',range:'< 75 ft²',min:0,max:75},
@@ -379,7 +452,7 @@ function v9Type(o,isLM){
  if(v9BrandEvidence[o.brand])return v9BrandEvidence[o.brand].cat;
  return'unclassified';
 }
-function v9Region(o){return v9State.region==='all'||(o.city||'').toLowerCase().includes('saint john')||['Grand Bay-Westfield','Rothesay','Hampton','Nauwigewauk'].some(s=>(o.city||'').includes(s))||['Saint John','Fairville','Golden Grove Road','Route 100','Grand Bay'].some(s=>(o.branch||'').includes(s))&&(o.brand==='Mini Mall Storage'||o.brand==='Grand Bay Self Storage');}
+function v9Region(o){if(v9State.city!=='all')return cityOfferFilter(o,v9State.city);return v9State.region==='all'||(o.city||'').toLowerCase().includes('saint john')||['Grand Bay-Westfield','Rothesay','Hampton','Nauwigewauk'].some(s=>(o.city||'').includes(s))||['Saint John','Fairville','Golden Grove Road','Route 100','Grand Bay'].some(s=>(o.branch||'').includes(s))&&(o.brand==='Mini Mall Storage'||o.brand==='Grand Bay Self Storage');}
 function v9Raw(){
  const lm=DATA.landmark.map(o=>({...o,_lm:true,_category:v9Type(o,true),_area:v9Area(o),_yearRegular:v9Num(o.regular_monthly_cad)!=null?v9Num(o.regular_monthly_cad)*12:null,_yearFirst:null}));
  const peer=DATA.offers.map(o=>({...o,_lm:false,_category:v9Type(o,false),_area:v9Area(o),_yearRegular:null,_yearFirst:null}));
@@ -398,7 +471,7 @@ function v9Key(o){return [o._lm?'LM':o.brand,o.branch,o._category,o.width_ft,o.l
 function v9Unique(arr){let m=new Map();for(const x of arr)if(!m.has(v9Key(x)))m.set(v9Key(x),x);return [...m.values()];}
 function v9Build(){
  const raw=v9Raw();const all=v9Unique(raw.peer.filter(p=>v9Region(p)));
- const lm=v9Unique(raw.lm);
+ const lm=(v9State.city==='all'||v9State.city==='nb|saint john')?v9Unique(raw.lm):[];
  const filtered=lm.concat(all).filter(p=>p._category===v9State.cat&&v9SizeGroupPass(p));
  const ranked=new Map(),pending=[];
  for(const o of filtered){
@@ -419,7 +492,7 @@ function v9Build(){
    firstYearStatus:v9State.mode==='first'&&units.some(u=>!u._lm&&v9Num(u.price_intro_cad)>0)?'Promo duration unknown':'Regular-rate baseline',
    classBasis:units.some(u=>!u._lm&&v9BrandEvidence[u.brand]&&(u.climate==='unknown'||u.drive_up==='unknown'))?'Facility-level evidence':'Unit listing'};
  }).sort((a,b)=>a.value-b.value||a.brand.localeCompare(b.brand));
- const allBrandSet=[...new Set(DATA.offers.map(o=>o.brand))].sort();
+ const allBrandSet=[...new Set(DATA.offers.filter(p=>v9Region(p)).map(o=>o.brand))].sort();
  return {rows,pending,allBrandSet,raw,fullPeers:all,filtered};
 }
 function v9Render(){
@@ -427,12 +500,13 @@ function v9Render(){
  document.querySelector('#v9-types').innerHTML=v9Cats.map(c=>`<button type="button" data-v9-cat="${c.id}" class="v9-type ${v9State.cat===c.id?'active':''}">${esc(c.title)}<span>${[...new Set(raw.peer.filter(p=>v9Region(p)&&p._category===c.id).map(p=>p.brand))].length}</span></button>`).join('');
  const activeGroup=v9SizeGroups.find(g=>g.id===v9State.sizeGroup);
  document.getElementById('v9-sizegroups').innerHTML=v9SizeGroups.map(g=>{
-  const n=v9Unique(raw.lm.concat(raw.peer.filter(v9Region))).filter(p=>p._category===v9State.cat&&v9SizeGroupPass(p,g.id)&&p._yearRegular>0&&v9Url(p.source_url)&&(v9State.waitlist||p.availability!=='waitlist')).length;
+  const n=v9Unique((v9State.city==='all'||v9State.city==='nb|saint john'?raw.lm:[]).concat(raw.peer.filter(v9Region))).filter(p=>p._category===v9State.cat&&v9SizeGroupPass(p,g.id)&&p._yearRegular>0&&v9Url(p.source_url)&&(v9State.waitlist||p.availability!=='waitlist')).length;
   return `<button type="button" class="v9-group ${g.id===v9State.sizeGroup?'active':''}" data-v9-sizegroup="${g.id}" aria-pressed="${g.id===v9State.sizeGroup}"><strong>${g.name}</strong><small>${g.range}</small><span class="v9-group-count">${n} rates</span></button>`;
  }).join('');
  document.getElementById('v9-size-desc').textContent=v9GroupDetail();
 
- for(const [id,v] of [['v9-region',v9State.region],['v9-mode',v9State.mode],['v9-method',v9State.method],['v9-unit',v9State.unit]])document.getElementById(id).value=v;
+ for(const [id,v] of [['v9-region',v9State.region],['v9-city',v9State.city],['v9-mode',v9State.mode],['v9-method',v9State.method],['v9-unit',v9State.unit]])document.getElementById(id).value=v;
+ document.getElementById('v9-region').disabled=v9State.city!=='all';
  document.getElementById('v9-waitlist').checked=v9State.waitlist;
  document.getElementById('v9-fees').checked=v9State.fees;
  document.querySelector('#v9-title').textContent=cat.title;
@@ -459,7 +533,7 @@ function v9Render(){
  }).join(''):`<tr><td colspan="5" class="v9-empty"><b>No annualized prices in this filter.</b><div>Try another storage type or area bracket. Records without a verified billing period are shown below.</div></td></tr>`;
  // Make every brand with any captured price visible, not just the ones whose category matches the active filter.
  const brandSummary=allBrandSet.map(brand=>{
-   const originals=v9Unique(DATA.offers.filter(o=>o.brand===brand));
+   const originals=v9Unique(DATA.offers.filter(o=>o.brand===brand&&v9Region(o))); 
    const priced=originals.filter(o=>v9Num(o.price_regular_cad)>0).length;
    const inCat=filtered.filter(o=>o.brand===brand);
    const here=rows.find(r=>r.brand===brand);
@@ -471,7 +545,7 @@ function v9Render(){
  const search=(document.getElementById('v9-search')?.value||'').toLowerCase().trim();
  const visible=brandSummary.filter(o=>!search||(`${o.brand} ${o.inferred}`).toLowerCase().includes(search));
  document.getElementById('v9-directory-body').innerHTML=visible.map(o=>`<tr><td><b>${esc(o.brand)}</b></td><td>${esc(o.inferred)}</td><td>${o.priced} / ${o.total}</td><td><span class="v9-flag ${o.here?'good':'muted'}">${esc(o.status)}</span></td><td>${o.url?`<a class="v9-source" target="_blank" rel="noopener noreferrer" href="${esc(o.url)}">Source ↗</a>`:'—'}</td></tr>`).join('');
- document.getElementById('v9-directory-count').textContent=`${visible.length} of ${brandSummary.length} competitor brands shown`;
+ document.getElementById('v9-directory-count').textContent=`${visible.length} of ${brandSummary.length} competitor brands shown in ${v9State.city==='all'?'selected geography':cityName(v9State.city)}`;
  const inCatUnranked=pending.filter(o=>!o._lm),names=[...new Set(inCatUnranked.map(o=>o.brand))];
  document.getElementById('v9-excluded').innerHTML=names.length?names.map(name=>{
  const p=inCatUnranked.find(o=>o.brand===name);return `<div class="v9-alert-row"><div><b>${esc(name)}</b><small>${esc(p._reason)} · ${esc(v9Dims(p))} ft</small></div>${v9Url(p.source_url)?`<a href="${esc(p.source_url)}" target="_blank" rel="noopener noreferrer">Check source ↗</a>`:''}</div>`;
@@ -483,10 +557,119 @@ function v9Render(){
 }
 document.getElementById('v9-types').addEventListener('click',e=>{const b=e.target.closest('[data-v9-cat]');if(b){v9State.cat=b.dataset.v9Cat;v9Render();}});
 document.getElementById('v9-sizegroups').addEventListener('click',e=>{const b=e.target.closest('[data-v9-sizegroup]');if(b){v9State.sizeGroup=b.dataset.v9Sizegroup;v9Render();}});
-for(const [id,key] of [['v9-region','region'],['v9-mode','mode'],['v9-method','method'],['v9-unit','unit']])document.getElementById(id).addEventListener('change',e=>{v9State[key]=e.target.value;v9Render();});
+for(const [id,key] of [['v9-region','region'],['v9-city','city'],['v9-mode','mode'],['v9-method','method'],['v9-unit','unit']])document.getElementById(id).addEventListener('change',e=>{v9State[key]=e.target.value;v9Render();});
 for(const [id,key] of [['v9-waitlist','waitlist'],['v9-fees','fees']])document.getElementById(id).addEventListener('change',e=>{v9State[key]=e.target.checked;v9Render();});
 document.getElementById('v9-search').addEventListener('input',v9Render);
 
+
+
+/* V12: exact-city selector and carefully normalized city comparison.
+   All city menus are rebuilt from live DATA after V11 GitHub Sync updates.
+   Legacy 76-location registry is New Brunswick; newcomers need their own province field. */
+const cityLegacyNB=new Set(["bathurst", "bouctouche", "campbellton", "dieppe", "douglas", "edmundston", "fredericton", "grand bay-westfield", "grand-barachois", "hampton", "hanwell", "jacksonville", "miramichi", "moncton", "nauwigewauk", "new maryland", "oromocto", "quispamsis", "riverview", "rothesay", "sackville", "saint john", "shediac", "shediac cape", "steeves mountain", "sussex", "wakefield"]);
+const cityState={a:'nb|saint john',b:'nb|nauwigewauk',cat:'drive',size:'exact:10x10'};
+function cityKey(x){return String(x||'').normalize('NFKC').trim().replace(/\s+/g,' ').toLocaleLowerCase('en-CA');}
+function cityName(key){let rows=(DATA.offers||[]).concat(DATA.coverage||[]);let row=rows.find(o=>cityGeoKey(o)===key);return row?String(row.city||'').trim():(key==='on|toronto'?'Toronto':key==='all'?'All recorded cities':key);}
+function cityProvince(row){let raw=String(row.province||row.province_name||row.province_code||'').trim();
+ if(/^(nb|new brunswick)$/i.test(raw))return 'New Brunswick';if(/^(on|ontario)$/i.test(raw))return 'Ontario';
+ if(raw)return raw;
+ let key=cityKey(row.city);if(key==='toronto')return 'Ontario';if(cityLegacyNB.has(key))return 'New Brunswick';return 'Province not recorded';
+}
+function cityGeoKey(row){const c=cityKey(row.city);const p=cityProvince(row);const code=p==='New Brunswick'?'nb':p==='Ontario'?'on':cityKey(p);return code+'|'+c;}
+function cityOfferFilter(row,key){return !key||key==='all'||cityGeoKey(row)===key;}
+function cityKnown(){
+ const map=new Map();
+ for(const r of (DATA.coverage||[]).concat(DATA.offers||[])){
+  const key=cityGeoKey(r);if(!cityKey(r.city))continue;
+  if(!map.has(key))map.set(key,{key,name:String(r.city).trim(),province:cityProvince(r),offers:0,locations:0});
+  let entry=map.get(key);if(cityProvince(r)!=='Province not recorded')entry.province=cityProvince(r);
+ }
+ for(const r of DATA.offers||[]){let row=map.get(cityGeoKey(r));if(row)row.offers++;}
+ for(const r of DATA.coverage||[]){let row=map.get(cityGeoKey(r));if(row)row.locations++;}
+ if(!map.has('on|toronto'))map.set('on|toronto',{key:'on|toronto',name:'Toronto',province:'Ontario',offers:0,locations:0});
+ return [...map.values()].sort((a,b)=>a.name.localeCompare(b.name,'en-CA'));
+}
+function cityOptionLabel(c){return `${c.name} · ${c.province} · ${c.offers} rate records${c.offers?'':' (no data)'}`;}
+function cityUpdateOptions(){
+ const cities=cityKnown(),opts=(all)=> (all?'<option value="all">All recorded cities</option>':'')+cities.map(c=>`<option value="${esc(c.key)}">${esc(cityOptionLabel(c))}</option>`).join('');
+ for(const [id,allowAll] of [['pricing-city',true],['offer-city',true],['coverage-city',true],['v9-city',true],['city-a',false],['city-b',false]]){
+   let e=document.getElementById(id);if(!e)continue;
+   let desired=id==='pricing-city'?curr.city:id==='v9-city'?v9State.city:id==='city-a'?cityState.a:id==='city-b'?cityState.b:(e.value||'all');
+   e.innerHTML=opts(allowAll);
+   e.value=cities.some(c=>c.key===desired)||desired==='all'?desired:(allowAll?'all':'nb|saint john');
+ }
+}
+function cityStrictCategory(o){
+ let type=String(o.unit_type||'').toLowerCase(),c=String(o.climate||'').toLowerCase(),d=String(o.drive_up||'').toLowerCase();
+ if(type==='parking')return 'parking';
+ if(type==='container')return 'container';
+ if(type!=='storage')return null;
+ if(c==='yes'&&d==='no')return 'climate';
+ if(c==='yes'&&d==='yes')return 'climate_drive';
+ if(c==='no'&&d==='no')return 'indoor';
+ if(c==='no'&&d==='yes')return 'drive';
+ // Only exact unit-level claims qualify; do not apply nationwide brand inferences.
+ return null;
+}
+function cityAnnual(o){
+ let p=Number(o.price_regular_cad),period=o.billing_period;
+ if(o.price_regular_cad==null||o.price_regular_cad===''||!(p>0)||!Number.isFinite(p))return null;
+ if(o.price_status==='multiple_prices_unresolved'||o.confidence==='review'||['unknown','conflict','legacy_unverified'].includes(o.billing_period_status))return null;
+ let factor=period==='month'?12:period==='4_weeks'?13:period==='30_days'?365/30:0;
+ return factor?p*factor:null;
+}
+function citySizePass(area,unit){if(cityState.size.startsWith('exact:')){let want=cityState.size.slice(6).split('x').map(Number).sort((a,b)=>a-b);let got=[Number(unit.width_ft),Number(unit.length_ft)].sort((a,b)=>a-b);return want.length===2&&got.every((v,i)=>Number.isFinite(v)&&Math.abs(v-want[i])<.01);}const g=v9SizeGroups.find(x=>x.id===cityState.size);return !!g&&area>=g.min&&area<g.max;}
+function cityEligible(o){
+ if(cityStrictCategory(o)!==cityState.cat)return false;
+ let w=Number(o.width_ft),l=Number(o.length_ft),a=w*l;
+ return w>0&&l>0&&citySizePass(a,o)&&cityAnnual(o)!=null&&validUrl(o.source_url);
+}
+function cityMedian(values){if(!values.length)return null;let nums=values.slice().sort((a,b)=>a-b),n=nums.length;return n%2?nums[(n-1)/2]:(nums[n/2-1]+nums[n/2])/2;}
+function cityUnique(rows){let seen=new Set();return rows.filter(o=>{
+ const key=o.sku?`sku|${o.brand}|${o.branch}|${o.sku}`:[o.brand,o.branch,o.city,o.width_ft,o.length_ft,o.climate,o.drive_up,o.price_regular_cad,o.billing_period,o.source_url].join('|');
+ if(seen.has(key))return false;seen.add(key);return true;
+});}
+function cityAnalyze(key){
+ let raw=DATA.offers.filter(o=>cityOfferFilter(o,key));let matches=cityUnique(raw.filter(cityEligible));
+ let grouped=new Map();for(const o of matches){if(!grouped.has(o.brand))grouped.set(o.brand,[]);grouped.get(o.brand).push(o);}
+ let operators=[...grouped].map(([brand,units])=>{
+  let prices=units.map(o=>cityAnnual(o)/(Number(o.width_ft)*Number(o.length_ft)));
+  return {brand,units,count:units.length,average:prices.reduce((a,b)=>a+b,0)/prices.length,source:units.find(o=>validUrl(o.source_url))?.source_url};
+ }).sort((a,b)=>a.average-b.average);
+ let coverage=DATA.coverage.filter(o=>cityOfferFilter(o,key));
+ return {key,name:cityName(key),province:cityKnown().find(c=>c.key===key)?.province||'Province not recorded',operators,priceCount:matches.length,rawCount:raw.length,coverageCount:coverage.length,median:cityMedian(operators.map(o=>o.average)),excluded:raw.length-matches.length};
+}
+function cityFmtRate(v){return v===null?'—':money(v);}
+function cityMarketCard(info,label){
+ const valid=info.median!==null;
+ return `<article class="city-marketcard"><div class="city-marketcard-head"><div><span class="section-kicker">${label} / MARKET</span><h3>${esc(info.name)}</h3><div class="city-province">${esc(info.province)}</div></div><span class="city-tag ${valid?'':'no'}">${valid?'Priced':'No matching rates'}</span></div>
+ <div class="city-market-value">${cityFmtRate(info.median)}</div><div class="city-market-caption">Median operator annual base rent per ft²${valid?` · ${money(info.median/12)} per ft²/month`:''}</div>
+ <div class="city-mini-metrics"><span><b>${info.operators.length}</b> operators</span><span><b>${info.priceCount}</b> qualifying unit rates</span><span><b>${info.coverageCount}</b> registered sites</span></div>
+ <div class="city-market-caption">${!valid?'No qualifying published prices in this category and size group.':info.operators.length<3?'Small sample: fewer than 3 operators. Treat as indicative only.':'Multiple operators contribute to this median.'}</div></article>`;
+}
+function cityRender(){
+ let a=cityAnalyze(cityState.a),b=cityAnalyze(cityState.b);
+ let same=cityState.a===cityState.b;
+ document.getElementById('city-a').value=cityState.a;document.getElementById('city-b').value=cityState.b;
+ document.getElementById('city-type').value=cityState.cat;document.getElementById('city-size').value=cityState.size;
+ document.getElementById('city-market-cards').innerHTML=cityMarketCard(a,'A')+cityMarketCard(b,'B');
+ const selectedCat=document.getElementById('city-type').selectedOptions[0].textContent;
+ const selectedSize=document.getElementById('city-size').selectedOptions[0].textContent;
+ document.getElementById('city-filter-note').textContent=`${selectedCat} · ${selectedSize} · verified regular-rate billing only · 4 weeks × 13/year · one vote per operator`;
+ document.getElementById('city-filter-note').classList.toggle('good',cityState.size!=='all');
+ let max=Math.max(a.median||0,b.median||0,1);
+ const bar=(r,alt)=>`<div class="city-bar-row"><div class="city-name">${esc(r.name)}</div><div class="city-bar-track">${r.median!==null?`<div class="city-bar-fill ${alt?'alt':''}" style="width:${Math.max(2,r.median/max*100).toFixed(2)}%"></div>`:''}</div><div class="city-bar-number">${cityFmtRate(r.median)}</div></div>`;
+ let diff=!same&&a.median!==null&&b.median!==null?((b.median/a.median-1)*100):null;
+ let explanation=same?'<div class="city-alert">Choose two different cities to calculate a cross-market difference.</div>':diff!==null?`<div class="city-delta">${esc(b.name)} is ${Math.abs(diff).toFixed(1)}% ${diff>=0?'higher':'lower'} than ${esc(a.name)} on this matched operator-median index.</div>`:'<div class="city-alert">A city has no qualified price observations for these exact filters. The dashboard cannot calculate a defensible difference. Try another size/type, or crawl that city.</div>';
+ document.getElementById('city-comparison-chart').innerHTML=`<div class="city-bars">${bar(a,false)}${bar(b,true)}</div>${explanation}`;
+ const records=[a,b].flatMap(info=>info.operators.map(r=>({city:info.name,...r})))
+  .sort((x,y)=>x.city.localeCompare(y.city)||x.average-y.average);
+ document.getElementById('city-operator-body').innerHTML=records.length?records.map(r=>`<tr><td>${esc(r.city)}</td><td><strong>${esc(r.brand)}</strong></td><td>${r.count}</td><td><strong>${money(r.average)}</strong></td><td>${money(r.average/12)}</td><td>${validUrl(r.source)?aLinkCity(r.source):'—'}</td></tr>`).join(''):'<tr><td colspan="6">No qualifying operator rates for the selected city pair and category.</td></tr>';
+ document.getElementById('city-exclusion-note').textContent=`Excluded from this strict comparison: ${a.excluded} of ${a.rawCount} ${a.name} price records and ${b.excluded} of ${b.rawCount} ${b.name} records, because size, climate/access type, billing basis, source or data quality do not meet the selected filters. Rows may also be duplicate observations. Missing data is never treated as $0.`;
+}
+function aLinkCity(url){return `<a class="dotlink" target="_blank" rel="noopener noreferrer" href="${esc(url)}">Evidence ↗</a>`;}
+for(const [id,key] of [['city-a','a'],['city-b','b'],['city-type','cat'],['city-size','size']])document.getElementById(id).addEventListener('change',e=>{cityState[key]=e.target.value;cityRender();});
+document.getElementById('pricing-city').addEventListener('change',e=>{curr.city=e.target.value;renderPricing();});
 
 /* V11 public-data feed. We retain embedded V10 records only for offline/fetch-error fallback.
    A failed or invalid remote response NEVER clears existing rates. */
@@ -511,7 +694,7 @@ function applyPublishedData(next){
   localIds.clear();DATA.coverage.filter(x=>x.tier==='direct').forEach(x=>localIds.add(x.brand+'|'+x.branch));
   const svcCount=document.getElementById('service-total-dimensions');if(svcCount)svcCount.textContent=DATA.services.length;
   const intro=document.querySelector('#view-catalog .page-intro .body');if(intro)intro.textContent='All '+DATA.offers.length+' retained competitor offer records. Each rate has its own source and observation date; unresolved prices are unranked.';
-  renderOverview();renderPricing();renderServices();renderOffers();renderCoverage();v9Render();
+  cityUpdateOptions();renderOverview();renderPricing();renderServices();renderOffers();renderCoverage();v9Render();cityRender();
   lastPublishedFingerprint=fingerprint;
  }
  syncLabel('PUBLISHED DATA', next.sync?.crawler_run_at_utc||next.crawler_run_generated_at||next.updated);
@@ -530,6 +713,7 @@ async function refreshPublishedData(){
   console.warn('Landmark: public data unavailable; showing last verified snapshot.',err);
  }
 }
+cityUpdateOptions();cityRender();
 refreshPublishedData();
 if(location.protocol==='https:'||location.protocol==='http:')setInterval(refreshPublishedData,90000);
 </script>
