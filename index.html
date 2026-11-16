@@ -207,13 +207,13 @@
   </section>
 
     <section id="view-cities" class="view">
-      <div class="city-hero"><div><div class="city-kicker">GEOGRAPHY / CITY PRICE INTELLIGENCE</div><h1>Different cities.<br><em>Comparable prices.</em></h1><p>Compare published competitor base rents across two cities after matching storage specifications and unit size. City medians give each operator one vote—not each of its advertised units.</p></div><span class="city-chip">CITY-TO-CITY BENCHMARK</span></div>
+      <div class="city-hero"><div><div class="city-kicker">GEOGRAPHY / CITY PRICE INTELLIGENCE</div><h1>Different cities.<br><em>Comparable prices.</em></h1><p>Choose the first city. The second-city menu then shows only cities with a shared storage type; matching unit sizes are prioritized automatically. City medians give each operator one vote—not each advertised unit.</p></div><span class="city-chip">CITY-TO-CITY BENCHMARK</span></div>
       <div class="panel sections">
-        <div class="panel-head"><div><div class="section-kicker">01 / Market selection</div><h2>Build your comparison</h2><p class="sub">Cities come from the published crawler dataset. Toronto is selectable as a future market, but has no rates until its facilities are crawled.</p></div><span class="tiny-pill">CAD · VERIFIED BASE</span></div>
+        <div class="panel-head"><div><div class="section-kicker">01 / Market selection</div><h2>Build your comparison</h2><p class="sub">Choose City A first. City B automatically lists matching markets, ranked by exact size, similar size band, or storage type only. No trial-and-error filtering required.</p></div><span class="tiny-pill">CAD · VERIFIED BASE</span></div>
         <div class="city-toolbar">
-          <label>City A<select class="city-select" id="city-a" aria-label="Select first city"></select></label>
-          <label>City B<select class="city-select" id="city-b" aria-label="Select second city"></select></label>
-          <label>Storage category<select class="city-select" id="city-type" aria-label="Select matched storage category">
+          <label>1 · Reference city<select class="city-select" id="city-a" aria-label="Select first city"></select></label>
+          <label>2 · Compatible city<select class="city-select" id="city-b" aria-label="Select compatible second city"></select><span class="city-guide">Only cities sharing a verified storage category appear.</span></label>
+          <label>3 · Matched storage category<select class="city-select" id="city-type" aria-label="Select matched storage category">
             <option value="drive">Outdoor / drive-up · non-climate</option>
             <option value="climate">Indoor · climate-controlled</option>
             <option value="indoor">Indoor · non-climate</option>
@@ -221,8 +221,9 @@
             <option value="parking">Vehicle parking</option>
             <option value="container">Storage containers</option>
           </select></label>
-          <label>Unit size<select class="city-select" id="city-size" aria-label="Select size bracket"><option value="small">Small · &lt;75 ft²</option><option value="medium" selected>Medium · 75–&lt;150 ft²</option><option value="large">Large · 150–&lt;300 ft²</option><option value="xl">Extra Large · ≥300 ft²</option><option value="exact:5x5">Exact 5×5 ft</option><option value="exact:5x10">Exact 5×10 ft</option><option value="exact:10x10">Exact 10×10 ft</option><option value="exact:10x15">Exact 10×15 ft</option><option value="exact:10x20">Exact 10×20 ft</option><option value="all">All sizes · not like-for-like</option></select></label>
+          <label>4 · Matched unit size<select class="city-select" id="city-size" aria-label="Select size bracket"><option value="small">Small · &lt;75 ft²</option><option value="medium" selected>Medium · 75–&lt;150 ft²</option><option value="large">Large · 150–&lt;300 ft²</option><option value="xl">Extra Large · ≥300 ft²</option><option value="exact:5x5">Exact 5×5 ft</option><option value="exact:5x10">Exact 5×10 ft</option><option value="exact:10x10">Exact 10×10 ft</option><option value="exact:10x15">Exact 10×15 ft</option><option value="exact:10x20">Exact 10×20 ft</option><option value="all">All sizes · not like-for-like</option></select></label>
         </div>
+        <div class="city-smart-summary" id="city-smart-summary" role="status" aria-live="polite">Finding compatible cities from published data…</div>
         <div class="city-alert good" id="city-filter-note">Verified recurring base rates only · floor area calculated from published dimensions · 4 weeks = 13 periods/year.</div>
       </div>
       <div class="city-cardgrid" id="city-market-cards" aria-live="polite"></div>
@@ -629,7 +630,105 @@ function cityUnique(rows){let seen=new Set();return rows.filter(o=>{
  const key=o.sku?`sku|${o.brand}|${o.branch}|${o.sku}`:[o.brand,o.branch,o.city,o.width_ft,o.length_ft,o.climate,o.drive_up,o.price_regular_cad,o.billing_period,o.source_url].join('|');
  if(seen.has(key))return false;seen.add(key);return true;
 });}
+/* V30: derive compatible cities from actual eligible (not merely registered) offers.
+   Exact matching is preferred, then a shared area bracket; category-only comparisons
+   remain discoverable but never receive a like-for-like percentage. */
+const cityCatNames={drive:'Outdoor / drive-up · non-climate',climate:'Indoor · climate-controlled',indoor:'Indoor · non-climate',climate_drive:'Climate-controlled drive-up',parking:'Vehicle parking',container:'Storage containers'};
+const citySizeNames={small:'Small · <75 ft²',medium:'Medium · 75–<150 ft²',large:'Large · 150–<300 ft²',xl:'Extra Large · ≥300 ft²',all:'Different sizes · exploratory only'};
+function citySizeBracket(area){return area<75?'small':area<150?'medium':area<300?'large':'xl';}
+function cityExactSize(o){const vals=[Number(o.width_ft),Number(o.length_ft)].sort((a,b)=>a-b);return vals.every(v=>Number.isFinite(v)&&v>0)?vals.map(v=>Number.isInteger(v)?String(v):String(v)).join('x'):null;}
+function citySizeDisplay(key){const dims=key.replace('exact:','').split('x');return 'Exact '+dims.join('×')+' ft';}
+function cityCatalog(){
+ const map=new Map();
+ for(const o of cityUnique(DATA.offers||[])){
+   const cat=cityStrictCategory(o),w=Number(o.width_ft),l=Number(o.length_ft),url=o.source_url;
+   if(!cat||!(w>0&&l>0)||cityAnnual(o)==null||!validUrl(url)||
+     (o.national_qa_status&&o.national_qa_status!=='verified_base'))continue;
+   const key=cityGeoKey(o),bracket=citySizeBracket(w*l),size=cityExactSize(o);
+   if(!map.has(key))map.set(key,new Map());
+   const categories=map.get(key);
+   if(!categories.has(cat))categories.set(cat,{count:0,brackets:new Map(),sizes:new Map()});
+   const entry=categories.get(cat);
+   entry.count++;
+   entry.brackets.set(bracket,(entry.brackets.get(bracket)||0)+1);
+   entry.sizes.set(size,(entry.sizes.get(size)||0)+1);
+ }
+ return map;
+}
+function cityPairCompatibility(a,b){
+ const items=[];
+ if(!a||!b)return items;
+ for(const [cat,left] of a){
+  const right=b.get(cat);if(!right)continue;
+  let exactCount=0,bracketCount=0;
+  const exactSizes=[];
+  for(const [size,n] of left.sizes){if(right.sizes.has(size)){
+   const m=Math.min(n,right.sizes.get(size));exactCount+=m;
+   exactSizes.push({size:'exact:'+size,cat,level:3,count:m});
+  }}
+  const brackets=[];
+  for(const [size,n] of left.brackets){if(right.brackets.has(size)){
+   const m=Math.min(n,right.brackets.get(size));bracketCount+=m;
+   brackets.push({size,cat,level:2,count:m});
+  }}
+  items.push(...exactSizes,...brackets,{size:'all',cat,level:1,count:Math.min(left.count,right.count)});
+ }
+ return items;
+}
+function cityMatchRanking(matches){
+ return matches.slice().sort((a,b)=>b.level-a.level||b.count-a.count||
+   (a.size==='all'?1:0)-(b.size==='all'?1:0)||a.cat.localeCompare(b.cat));
+}
+function citySmartSync(){
+ const catSelect=document.getElementById('city-type'),sizeSelect=document.getElementById('city-size'),
+   cityBSelect=document.getElementById('city-b'),message=document.getElementById('city-smart-summary');
+ const catalog=cityCatalog(),cities=cityKnown(),base=catalog.get(cityState.a),available=[];
+ for(const c of cities){
+  if(c.key===cityState.a)continue;
+  const matches=cityPairCompatibility(base,catalog.get(c.key));if(!matches.length)continue;
+  const exact=new Set(matches.filter(m=>m.level===3).map(m=>m.cat+':'+m.size)).size;
+  const bands=new Set(matches.filter(m=>m.level===2).map(m=>m.cat+':'+m.size)).size;
+  const types=new Set(matches.map(m=>m.cat)).size;
+  const level=exact?3:bands?2:1;
+  available.push({...c,matches,exact,bands,types,level});
+ }
+ available.sort((a,b)=>b.level-a.level||b.exact-a.exact||b.bands-a.bands||b.types-a.types||a.name.localeCompare(b.name,'en-CA'));
+ cityBSelect.innerHTML=available.length?available.map(c=>{
+  const detail=c.exact?`${c.exact} exact size${c.exact===1?'':'s'}`:c.bands?`${c.bands} similar size band${c.bands===1?'':'s'}`:'type only · sizes differ';
+  return `<option value="${esc(c.key)}">${esc(c.name)} · ${esc(c.province)} — ${detail}</option>`;
+ }).join(''):'<option value="">No compatible city with verified rates</option>';
+ if(!available.some(c=>c.key===cityState.b))cityState.b=available[0]?.key||'';
+ cityBSelect.value=cityState.b;cityBSelect.disabled=!available.length;
+ const selected=available.find(c=>c.key===cityState.b),matches=selected?.matches||[];
+ const ranked=cityMatchRanking(matches),cats=[...new Set(ranked.map(m=>m.cat))];
+ if(!cats.includes(cityState.cat))cityState.cat=ranked[0]?.cat||'';
+ catSelect.innerHTML=cats.length?cats.map(cat=>{
+  const inCat=matches.filter(m=>m.cat===cat),best=Math.max(...inCat.map(m=>m.level)),
+    detail=best===3?'exact sizes available':best===2?'similar size bands':'different sizes only';
+  return `<option value="${esc(cat)}">${esc(cityCatNames[cat]||cat)} · ${detail}</option>`;
+ }).join(''):'<option value="">No comparable storage type</option>';
+ catSelect.value=cityState.cat;catSelect.disabled=!cats.length;
+ const sizes=matches.filter(m=>m.cat===cityState.cat).sort((a,b)=>b.level-a.level||b.count-a.count||a.size.localeCompare(b.size));
+ if(!sizes.some(m=>m.size===cityState.size))cityState.size=sizes[0]?.size||'';
+ const sizeUnique=[...new Set(sizes.map(m=>m.size))];
+ sizeSelect.innerHTML=sizeUnique.length?sizeUnique.map(size=>{
+  const item=sizes.find(x=>x.size===size);
+  const label=size.startsWith('exact:')?citySizeDisplay(size):citySizeNames[size]||size;
+  const count=item.level===1?'':` · ${item.count} paired rate${item.count===1?'':'s'}`;
+  return `<option value="${esc(size)}">${esc(label+count)}</option>`;
+ }).join(''):'<option value="">No comparable sizes</option>';
+ sizeSelect.value=cityState.size;sizeSelect.disabled=!sizes.length;
+ const chosen=sizes.find(m=>m.size===cityState.size);
+ const level=chosen?.level||0;
+ const detail=level===3?'Exact dimensions match in both cities.':level===2?'The same size band exists in both cities; dimensions may differ.':'Only the storage category matches; sizes differ, so no like-for-like percentage will be calculated.';
+ message.classList.toggle('empty',!available.length||level<2);
+ message.textContent=!base?.size?'City A has no verified eligible rates yet. Choose a city with published rates.':
+  !available.length?'No second city has verified rates in a matching storage category. More crawler coverage is needed.':
+  `${available.length} compatible cit${available.length===1?'y':'ies'} found automatically · ${selected.name}: ${detail}`;
+ return {available,level};
+}
 function cityAnalyze(key){
+ if(!key)return {key:'',name:'No compatible city',province:'—',operators:[],priceCount:0,rawCount:0,coverageCount:0,median:null,excluded:0};
  let raw=DATA.offers.filter(o=>cityOfferFilter(o,key));let matches=cityUnique(raw.filter(cityEligible));
  let grouped=new Map();for(const o of matches){if(!grouped.has(o.brand))grouped.set(o.brand,[]);grouped.get(o.brand).push(o);}
  let operators=[...grouped].map(([brand,units])=>{
@@ -648,19 +747,25 @@ function cityMarketCard(info,label){
  <div class="city-market-caption">${!valid?'No qualifying published prices in this category and size group.':info.operators.length<3?'Small sample: fewer than 3 operators. Treat as indicative only.':'Multiple operators contribute to this median.'}</div></article>`;
 }
 function cityRender(){
+ const match=citySmartSync();
  let a=cityAnalyze(cityState.a),b=cityAnalyze(cityState.b);
  let same=cityState.a===cityState.b;
  document.getElementById('city-a').value=cityState.a;document.getElementById('city-b').value=cityState.b;
  document.getElementById('city-type').value=cityState.cat;document.getElementById('city-size').value=cityState.size;
  document.getElementById('city-market-cards').innerHTML=cityMarketCard(a,'A')+cityMarketCard(b,'B');
- const selectedCat=document.getElementById('city-type').selectedOptions[0].textContent;
- const selectedSize=document.getElementById('city-size').selectedOptions[0].textContent;
- document.getElementById('city-filter-note').textContent=`${selectedCat} · ${selectedSize} · verified regular-rate billing only · 4 weeks × 13/year · one vote per operator`;
- document.getElementById('city-filter-note').classList.toggle('good',cityState.size!=='all');
+ const selectedCat=document.getElementById('city-type').selectedOptions[0]?.textContent||'No matching category';
+ const selectedSize=document.getElementById('city-size').selectedOptions[0]?.textContent||'No matching size';
+ const strength=match.level===3?'EXACT UNIT DIMENSIONS':match.level===2?'SAME AREA BAND · NOT EXACT DIMENSIONS':'CATEGORY ONLY · EXPLORATORY, NOT LIKE-FOR-LIKE';
+ document.getElementById('city-filter-note').textContent=`${selectedCat} · ${selectedSize} · ${strength} · verified regular-rate billing only · 4 weeks × 13/year · one vote per operator`;
+ document.getElementById('city-filter-note').classList.toggle('good',match.level>=2);
  let max=Math.max(a.median||0,b.median||0,1);
  const bar=(r,alt)=>`<div class="city-bar-row"><div class="city-name">${esc(r.name)}</div><div class="city-bar-track">${r.median!==null?`<div class="city-bar-fill ${alt?'alt':''}" style="width:${Math.max(2,r.median/max*100).toFixed(2)}%"></div>`:''}</div><div class="city-bar-number">${cityFmtRate(r.median)}</div></div>`;
- let diff=!same&&a.median!==null&&b.median!==null?((b.median/a.median-1)*100):null;
- let explanation=same?'<div class="city-alert">Choose two different cities to calculate a cross-market difference.</div>':diff!==null?`<div class="city-delta">${esc(b.name)} is ${Math.abs(diff).toFixed(1)}% ${diff>=0?'higher':'lower'} than ${esc(a.name)} on this matched operator-median index.</div>`:'<div class="city-alert">A city has no qualified price observations for these exact filters. The dashboard cannot calculate a defensible difference. Try another size/type, or crawl that city.</div>';
+ let diff=match.level>=2&&!same&&a.median!==null&&b.median!==null?((b.median/a.median-1)*100):null;
+ let explanation=!cityState.b?'<div class="city-alert">No compatible published prices for a second city. This is a coverage gap, not a zero price.</div>':
+  match.level===1?'<div class="city-alert">Only the storage category overlaps. The cities have different sizes, so the price-per-area figures are exploratory; a comparable percentage is intentionally withheld.</div>':
+  same?'<div class="city-alert">Choose two different cities to calculate a cross-market difference.</div>':
+  diff!==null?`<div class="city-delta">${esc(b.name)} is ${Math.abs(diff).toFixed(1)}% ${diff>=0?'higher':'lower'} than ${esc(a.name)} on this ${match.level===3?'exact-size':'area-band'} operator-median index.${match.level===2?' Same area band does not guarantee identical unit dimensions.':''}</div>`:
+  '<div class="city-alert">The selected pair has no comparable verified price observations. More public data is needed.</div>';
  document.getElementById('city-comparison-chart').innerHTML=`<div class="city-bars">${bar(a,false)}${bar(b,true)}</div>${explanation}`;
  const records=[a,b].flatMap(info=>info.operators.map(r=>({city:info.name,...r})))
   .sort((x,y)=>x.city.localeCompare(y.city)||x.average-y.average);
@@ -668,7 +773,13 @@ function cityRender(){
  document.getElementById('city-exclusion-note').textContent=`Excluded from this strict comparison: ${a.excluded} of ${a.rawCount} ${a.name} price records and ${b.excluded} of ${b.rawCount} ${b.name} records, because size, climate/access type, billing basis, source or data quality do not meet the selected filters. Rows may also be duplicate observations. Missing data is never treated as $0.`;
 }
 function aLinkCity(url){return `<a class="dotlink" target="_blank" rel="noopener noreferrer" href="${esc(url)}">Evidence ↗</a>`;}
-for(const [id,key] of [['city-a','a'],['city-b','b'],['city-type','cat'],['city-size','size']])document.getElementById(id).addEventListener('change',e=>{cityState[key]=e.target.value;cityRender();});
+for(const [id,key] of [['city-a','a'],['city-b','b'],['city-type','cat'],['city-size','size']])document.getElementById(id).addEventListener('change',e=>{
+ cityState[key]=e.target.value;
+ if(key==='a'){cityState.b='';cityState.cat='';cityState.size='';}
+ if(key==='b'){cityState.cat='';cityState.size='';}
+ if(key==='cat')cityState.size='';
+ cityRender();
+});
 document.getElementById('pricing-city').addEventListener('change',e=>{curr.city=e.target.value;renderPricing();});
 
 /* V11 public-data feed. We retain embedded V10 records only for offline/fetch-error fallback.
