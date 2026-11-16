@@ -123,6 +123,19 @@
 @media(max-width:850px){.city-cardgrid{grid-template-columns:1fr}.city-hero{padding:28px 24px}.city-bar-row{grid-template-columns:100px minmax(0,1fr) 92px;gap:8px}.city-market-value{font-size:32px}}
 @media(max-width:560px){.city-toolbar label{min-width:100%}.city-inline-filter select{min-width:100%;width:100%}.city-bar-row{grid-template-columns:85px minmax(0,1fr) 84px}.city-hero .city-chip{display:none}}
 
+
+/* V31 — Product-based exact-size benchmark; scoped to City Intelligence only. */
+.v31-modebar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 10px}
+.v31-mode{border:1px solid #cddde2;background:#fff;border-radius:13px;color:#235067;text-align:left;font-weight:850;font-size:13px;padding:14px 19px;min-width:225px;flex:1;box-shadow:var(--shadow)}
+.v31-mode small{display:block;color:#8495a3;font-size:10px;font-weight:500;margin-top:5px}
+.v31-mode.active{background:#16536b;color:#fff;border-color:#16536b}.v31-mode.active small{color:#c6e7e7}
+.v31-control-panel{margin-top:15px}.v31-fixed-city{background:#f1f7f7;border:1px solid #d7e9e9;border-radius:10px;padding:9px 13px;color:#164859;font-weight:820;font-size:12px;min-height:44px;display:flex;flex-direction:column;justify-content:center;gap:3px;letter-spacing:0;text-transform:none}.v31-fixed-city span{font-size:10px;color:#708995;font-weight:550}
+.v31-toolbar label{min-width:180px}.v31-summary{border-radius:11px;background:#eff7f6;color:#2a6270;font-weight:700;padding:13px 16px;line-height:1.65;font-size:12px}
+.v31-research-toggle{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11px;color:#567386;margin:12px 0 0}.v31-research-toggle input{accent-color:#139f90}.v31-key{display:flex;flex-wrap:wrap;gap:10px 22px;margin:16px 0 0;color:#65808b;font-size:10px;line-height:1.65}.v31-key b{color:#395768}.v31-dot{width:9px;height:9px;display:inline-block;border-radius:50%;margin-right:6px}.v31-dot.verified{background:#14a489}.v31-dot.conditional{background:#e9ab54}.v31-dot.exploratory{background:#9ba8b1}
+.v31-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:16px 0}.v31-kpi{background:#fff;border:1px solid #e0eaee;border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}.v31-kpi b{display:block;font-size:27px;color:#153f50;letter-spacing:-.04em}.v31-kpi span{display:block;font-size:10px;color:#6d8594;margin-top:7px;line-height:1.5}
+.v31-matrix,.v31-evidence{min-width:880px}.v31-matrix td{padding:16px 11px}.v31-price{font-size:15px;color:#194b54;font-weight:850;white-space:nowrap}.v31-subcell{display:block;font-size:10px;color:#8aa0a8;font-weight:520;margin-top:4px}.v31-price-higher{color:#bb6d4e}.v31-price-lower{color:#157e72}.v31-muted{color:#899ba4}.v31-tier{display:inline-flex;align-items:center;border-radius:24px;padding:5px 9px;font-size:10px;font-weight:800;white-space:nowrap}.v31-tier.verified{color:#18776d;background:#e1f5ef}.v31-tier.conditional{color:#98702a;background:#fff3da}.v31-tier.exploratory{color:#6e7b87;background:#eef1f4}.v31-evidence td{font-size:11px}.v31-evidence strong{font-size:12px}.v31-method{padding:12px 0}
+@media(max-width:990px){.v31-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.v31-mode{min-width:100%}.v31-kpis{grid-template-columns:1fr 1fr}.v31-kpi{padding:12px}.v31-kpi b{font-size:22px}}
 </style>
 </head>
 <body>
@@ -207,29 +220,48 @@
   </section>
 
     <section id="view-cities" class="view">
-      <div class="city-hero"><div><div class="city-kicker">GEOGRAPHY / CITY PRICE INTELLIGENCE</div><h1>Different cities.<br><em>Comparable prices.</em></h1><p>Choose the first city. The second-city menu then shows only cities with a shared storage type; matching unit sizes are prioritized automatically. City medians give each operator one vote—not each advertised unit.</p></div><span class="city-chip">CITY-TO-CITY BENCHMARK</span></div>
-      <div class="panel sections">
-        <div class="panel-head"><div><div class="section-kicker">01 / Market selection</div><h2>Build your comparison</h2><p class="sub">Choose City A first. City B automatically lists matching markets, ranked by exact size, similar size band, or storage type only. No trial-and-error filtering required.</p></div><span class="tiny-pill">CAD · VERIFIED BASE</span></div>
-        <div class="city-toolbar">
-          <label>1 · Reference city<select class="city-select" id="city-a" aria-label="Select first city"></select></label>
-          <label>2 · Compatible city<select class="city-select" id="city-b" aria-label="Select compatible second city"></select><span class="city-guide">Only cities sharing a verified storage category appear.</span></label>
-          <label>3 · Matched storage category<select class="city-select" id="city-type" aria-label="Select matched storage category">
-            <option value="drive">Outdoor / drive-up · non-climate</option>
-            <option value="climate">Indoor · climate-controlled</option>
-            <option value="indoor">Indoor · non-climate</option>
-            <option value="climate_drive">Climate-controlled drive-up</option>
-            <option value="parking">Vehicle parking</option>
-            <option value="container">Storage containers</option>
-          </select></label>
-          <label>4 · Matched unit size<select class="city-select" id="city-size" aria-label="Select size bracket"><option value="small">Small · &lt;75 ft²</option><option value="medium" selected>Medium · 75–&lt;150 ft²</option><option value="large">Large · 150–&lt;300 ft²</option><option value="xl">Extra Large · ≥300 ft²</option><option value="exact:5x5">Exact 5×5 ft</option><option value="exact:5x10">Exact 5×10 ft</option><option value="exact:10x10">Exact 10×10 ft</option><option value="exact:10x15">Exact 10×15 ft</option><option value="exact:10x20">Exact 10×20 ft</option><option value="all">All sizes · not like-for-like</option></select></label>
-        </div>
-        <div class="city-smart-summary" id="city-smart-summary" role="status" aria-live="polite">Finding compatible cities from published data…</div>
-        <div class="city-alert good" id="city-filter-note">Verified recurring base rates only · floor area calculated from published dimensions · 4 weeks = 13 periods/year.</div>
+      <div class="city-hero"><div><div class="city-kicker">GEOGRAPHY / EVIDENCE-LED PRICING</div><h1>Compare confidently.<br><em>Without guesswork.</em></h1><p>Start with Landmark's published unit rates or explore two market cities. Exact dimensions, normalized billing and product evidence determine which comparisons are defensible.</p></div><span class="city-chip">CANADA · LIVE DATA</span></div>
+      <div class="v31-modebar" id="v31-city-modes" role="group" aria-label="Comparison mode">
+        <button type="button" data-city-mode="landmark" class="v31-mode active" aria-pressed="true">Landmark vs Canada <small>Compare our rates to other cities</small></button>
+        <button type="button" data-city-mode="market" class="v31-mode" aria-pressed="false">City vs City <small>Compare two local markets</small></button>
       </div>
-      <div class="city-cardgrid" id="city-market-cards" aria-live="polite"></div>
-      <div class="panel sections"><div class="panel-head"><div><div class="section-kicker">02 / Normalized city comparison</div><h2>Annual CAD per ft²</h2><p class="sub">Median of operator-level averages within the same storage type and area bracket.</p></div><span class="tiny-pill">FT² / YEAR</span></div><div id="city-comparison-chart"></div></div>
-      <div class="panel sections"><div class="panel-head"><div><div class="section-kicker">03 / Operator evidence</div><h2>Company-by-company price index</h2><p class="sub">Each operator is shown separately with listing counts, source links and the selected city's price context.</p></div><span class="tiny-pill">SOURCE-LINKED</span></div><div class="city-table-wrap"><table class="city-table"><thead><tr><th>CITY</th><th>COMPANY</th><th>PRICED UNITS</th><th>AVG CAD/FT²/YR</th><th>CAD/FT²/MO</th><th>VERIFY</th></tr></thead><tbody id="city-operator-body"></tbody></table></div><div id="city-exclusion-note" class="city-method"></div></div>
-      <div class="notice"><strong>How to interpret:</strong> The benchmark uses unweighted averages of annualized price per ft² for a company's distinct, eligible advertised unit rates; the city figure is the median across companies. Promotional $1/week rates, unverified recurring periods, unknown access/climate classifications, missing dimensions and missing sources are excluded. If fewer than three companies qualify, the city result is a small-sample indicator—not a defensible market average. Landmark's own 28 unit cards are not treated as competitor offers. Cross-city differences do not account for tax, insurance, access hours, location quality or customer demand. New cities require real crawler observations.</div>
+      <div id="v31-landmark-mode">
+        <div class="panel sections v31-control-panel"><div class="panel-head"><div><div class="section-kicker">01 / Landmark reference</div><h2>Find comparable markets</h2><p class="sub">Your reference is Landmark Storage in Saint John. The second-city menu contains only places with priced, exact-dimension candidate units; the menu ranks documented product matches above less certain ones.</p></div><span class="tiny-pill">BASE RENT · CAD/MONTH</span></div>
+          <div class="city-toolbar v31-toolbar">
+            <label>1 · Reference facility<div class="v31-fixed-city">Landmark Storage <span>Saint John, NB</span></div></label>
+            <label>2 · Comparable city<select class="city-select" id="v31-lm-city" aria-label="Choose a city with potentially comparable Landmark units"></select><span class="city-guide">Ranked by match quality and exact unit dimensions</span></label>
+            <label>3 · Storage category<select class="city-select" id="v31-lm-cat" aria-label="Filter Landmark storage categories"></select></label>
+            <label>4 · Exact unit dimensions<select class="city-select" id="v31-lm-size" aria-label="Filter exact Landmark unit dimensions"></select></label>
+          </div>
+          <div class="v31-summary" id="v31-lm-summary" role="status" aria-live="polite">Calculating matches from published source data…</div>
+          <label class="v31-research-toggle"><input type="checkbox" id="v31-show-leads"> Include research leads with identical dimensions but <strong>unverified storage type</strong> (not suitable for a price comparison)</label>
+          <div class="v31-key"><span><i class="v31-dot verified"></i><b>Documented product match</b> — category and access attributes agree</span><span><i class="v31-dot conditional"></i><b>Conditional</b> — storage climate/drive-up verified, another attribute unknown</span><span><i class="v31-dot exploratory"></i><b>Size-only lead</b> — category not verified; no price delta</span></div>
+        </div>
+        <div class="v31-kpis" id="v31-lm-kpis"></div>
+        <div class="panel sections"><div class="panel-head"><div><div class="section-kicker">02 / Exact-size benchmark</div><h2>Landmark vs selected city</h2><p class="sub" id="v31-lm-matrix-desc">One row per identical unit size. City values give each operator one vote; no mixing of different areas or product types.</p></div><span class="tiny-pill">REGULAR RATES</span></div>
+          <div class="city-table-wrap"><table class="city-table v31-matrix"><thead><tr><th>UNIT / EXACT SIZE</th><th>LANDMARK / MONTH</th><th>CITY / MONTH</th><th>INDICATIVE DIFFERENCE</th><th>PRODUCT EVIDENCE</th></tr></thead><tbody id="v31-lm-matrix"></tbody></table></div>
+          <div class="city-method" id="v31-lm-market-note"></div>
+        </div>
+        <div class="panel sections"><div class="panel-head"><div><div class="section-kicker">03 / Auditable observations</div><h2>Every matched competitor rate</h2><p class="sub">Each source-linked row retains the branch, matched size, product confidence, billing basis and observation date. Price-only matches are not ranked as equivalent products.</p></div><span class="tiny-pill">OFFICIAL LINKS</span></div>
+          <div class="city-table-wrap"><table class="city-table v31-evidence"><thead><tr><th>OPERATOR / BRANCH</th><th>UNIT</th><th>REGULAR CAD/MO</th><th>EVIDENCE LEVEL</th><th>BILLING</th><th>OBSERVED</th><th>SOURCE</th></tr></thead><tbody id="v31-lm-evidence"></tbody></table></div>
+          <div class="city-method" id="v31-lm-method"></div>
+        </div>
+        <div class="notice"><strong>Decision standard:</strong> A published base price is not proof of comparable storage amenities. Landmark's indoor products are labelled “Heated” in its listing; its structured feed marks them climate-controlled. Competitor climate/access classifications may be incomplete. Conditional price differences are indicative, not apples-to-apples valuations. Missing parking width prevents a credible parking-size benchmark. Regular prices exclude uncertain fees, promotions, taxes, insurance, location and floor-access premiums; absence of availability is not evidence of vacancy.</div>
+      </div>
+      <div id="v31-market-mode" hidden>
+        <div class="panel sections"><div class="panel-head"><div><div class="section-kicker">01 / Market-to-market selection</div><h2>Compare two cities</h2><p class="sub">City B shows only cities with documented, published rates in a shared category. Select exact dimensions for defensible price deltas; area bands are for exploration only.</p></div><span class="tiny-pill">CAD · BASE RATES</span></div>
+          <div class="city-toolbar">
+            <label>1 · Reference city<select class="city-select" id="city-a" aria-label="Select first city"></select></label>
+            <label>2 · Compatible city<select class="city-select" id="city-b" aria-label="Select compatible second city"></select><span class="city-guide">Cities without a shared storage category are hidden.</span></label>
+            <label>3 · Storage category<select class="city-select" id="city-type" aria-label="Select matched storage category"></select></label>
+            <label>4 · Unit dimensions<select class="city-select" id="city-size" aria-label="Select exact or exploratory size"></select></label>
+          </div><div class="city-smart-summary" id="city-smart-summary" role="status" aria-live="polite"></div><div class="city-alert good" id="city-filter-note"></div>
+        </div>
+        <div class="city-cardgrid" id="city-market-cards" aria-live="polite"></div>
+        <div class="panel sections"><div class="panel-head"><div><div class="section-kicker">02 / Normalized city comparison</div><h2>Annual CAD per ft²</h2><p class="sub">Median of operator-level averages. Percent differences appear only for identical unit dimensions, not merely similar area bands.</p></div><span class="tiny-pill">FT² / YEAR</span></div><div id="city-comparison-chart"></div></div>
+        <div class="panel sections"><div class="panel-head"><div><div class="section-kicker">03 / Operator evidence</div><h2>Company-by-company price index</h2><p class="sub">Every operator's published base-price observations remain source-linked.</p></div><span class="tiny-pill">SOURCE-LINKED</span></div><div class="city-table-wrap"><table class="city-table"><thead><tr><th>CITY</th><th>COMPANY</th><th>PRICED UNITS</th><th>AVG CAD/FT²/YR</th><th>CAD/FT²/MO</th><th>VERIFY</th></tr></thead><tbody id="city-operator-body"></tbody></table></div><div id="city-exclusion-note" class="city-method"></div></div>
+        <div class="notice"><strong>Method:</strong> The benchmark uses unweighted averages of annualized price per ft² for distinct eligible advertised rates; the city figure is the median across operators. Exact-size comparisons are supported by matching category and dimension. Same-area bands are exploratory: their size mixes may differ. Under three operators is a small sample. Landmark's own rates are excluded from this general city-to-city mode. Tax, insurance, quality, access times and availability may differ.</div>
+      </div>
     </section>
     <section id="view-services" class="view">
       <div class="page-intro"><div><div class="section-kicker">Service intelligence</div><h1 class="title">What they offer.<br><span style="color:#108e84">What we can prove.</span></h1><p class="body">We distinguish one confirmed Landmark limitation from offerings that are merely not documented on its public website. Every competitor claim includes a clickable official source.</p></div><span class="page-tag">NO ASSUMPTIONS FROM SILENCE</span></div>
@@ -760,9 +792,9 @@ function cityRender(){
  document.getElementById('city-filter-note').classList.toggle('good',match.level>=2);
  let max=Math.max(a.median||0,b.median||0,1);
  const bar=(r,alt)=>`<div class="city-bar-row"><div class="city-name">${esc(r.name)}</div><div class="city-bar-track">${r.median!==null?`<div class="city-bar-fill ${alt?'alt':''}" style="width:${Math.max(2,r.median/max*100).toFixed(2)}%"></div>`:''}</div><div class="city-bar-number">${cityFmtRate(r.median)}</div></div>`;
- let diff=match.level>=2&&!same&&a.median!==null&&b.median!==null?((b.median/a.median-1)*100):null;
+ let diff=match.level===3&&cityState.size.startsWith('exact:')&&!same&&a.median!==null&&b.median!==null?((b.median/a.median-1)*100):null;
  let explanation=!cityState.b?'<div class="city-alert">No compatible published prices for a second city. This is a coverage gap, not a zero price.</div>':
-  match.level===1?'<div class="city-alert">Only the storage category overlaps. The cities have different sizes, so the price-per-area figures are exploratory; a comparable percentage is intentionally withheld.</div>':
+  match.level<3?'<div class="city-alert">Only the storage category or area band overlaps. These are exploratory price-per-area indices, not identical-size comparisons, so the percentage difference is intentionally withheld.</div>':
   same?'<div class="city-alert">Choose two different cities to calculate a cross-market difference.</div>':
   diff!==null?`<div class="city-delta">${esc(b.name)} is ${Math.abs(diff).toFixed(1)}% ${diff>=0?'higher':'lower'} than ${esc(a.name)} on this ${match.level===3?'exact-size':'area-band'} operator-median index.${match.level===2?' Same area band does not guarantee identical unit dimensions.':''}</div>`:
   '<div class="city-alert">The selected pair has no comparable verified price observations. More public data is needed.</div>';
@@ -780,6 +812,195 @@ for(const [id,key] of [['city-a','a'],['city-b','b'],['city-type','cat'],['city-
  if(key==='cat')cityState.size='';
  cityRender();
 });
+/* V31 — Landmark-to-Canada exact-unit comparisons.
+   Reads published data only; never modifies the crawl, QA gate or GitHub snapshot. */
+const v31State={mode:'landmark',city:'',cat:'all',size:'all',showLeads:false};
+const v31CatLabel={climate:'Heated indoor · climate-listed',drive:'Drive-up · non-climate',parking:'Outdoor parking'};
+function v31Rate(v){return Number.isFinite(v)?money(v):'—';}
+function v31Dim(w,l){const x=[Number(w),Number(l)].sort((a,b)=>a-b);return x[0]>0&&x.every(Number.isFinite)?x.map(n=>String(n)).join('x'):null;}
+function v31SizeLabel(k){return k? k.split('x').join('×')+' ft':'Size unavailable';}
+function v31LmRows(){
+ const map=new Map();
+ for(const lm of DATA.landmark||[]){
+  const cat=lm.unit_type==='indoor_storage'&&lm.climate_controlled==='yes'?'climate':lm.unit_type==='drive_up'?'drive':lm.unit_type==='outdoor_parking'?'parking':null;
+  const size=v31Dim(lm.width_ft,lm.length_ft),month=Number(lm.regular_monthly_cad);
+  if(!cat||!size||!Number.isFinite(month)||month<=0||!validUrl(lm.source_url))continue;
+  const key=cat+'|'+size;
+  if(!map.has(key))map.set(key,{key,cat,size,area:Number(lm.width_ft)*Number(lm.length_ft),records:[],months:[]});
+  map.get(key).records.push(lm);map.get(key).months.push(month);
+ }
+ return map;
+}
+function v31Grade(o,cat){
+ if(o.unit_type!=='storage')return 0;
+ const climate=String(o.climate||'unknown'),drive=String(o.drive_up||'unknown');
+ if(cat==='climate'){
+  if(drive==='yes'||climate==='no')return 0;
+  if(climate==='yes'&&drive==='no')return 3;
+  if(climate==='yes'&&drive==='unknown')return 2;
+  if(climate==='unknown'&&(drive==='no'||drive==='unknown'))return 1;
+ }
+ if(cat==='drive'){
+  if(drive==='no'||climate==='yes')return 0;
+  if(drive==='yes'&&climate==='no')return 3;
+  if(drive==='yes'&&climate==='unknown')return 2;
+  if(drive==='unknown'&&climate==='no')return 1;
+ }
+ return 0;
+}
+function v31Matches(baselines){
+ const rows=[];
+ for(const o of cityUnique(DATA.offers||[])){
+  if(o.national_qa_status&&o.national_qa_status!=='verified_base')continue;
+  if(o.availability==='waitlist'||o.confidence==='review')continue;
+  const annual=cityAnnual(o),size=v31Dim(o.width_ft,o.length_ft);
+  if(!size||annual==null||!validUrl(o.source_url))continue;
+  const monthly=annual/12;
+  if(!Number.isFinite(monthly)||monthly<=0)continue;
+  const city=cityGeoKey(o);
+  if(!city||city==='nb|saint john')continue; // The reference facility is Saint John; cross-city only.
+  for(const cat of ['climate','drive']){
+   const baseline=baselines.get(cat+'|'+size);if(!baseline)continue;
+   const grade=v31Grade(o,cat);if(!grade)continue;
+   rows.push({o,cat,size,baseline,city,monthly,grade,annual});
+  }
+ }
+ return rows;
+}
+function v31CityCandidates(all){
+ const byCity=new Map();
+ for(const r of all){
+  if(v31State.cat!=='all'&&r.cat!==v31State.cat)continue;
+  if(v31State.size!=='all'&&r.size!==v31State.size)continue;
+  if(!v31State.showLeads&&r.grade<2)continue;
+  if(!byCity.has(r.city))byCity.set(r.city,[]);
+  byCity.get(r.city).push(r);
+ }
+ const known=new Map(cityKnown().map(c=>[c.key,c]));
+ const out=[...byCity].map(([key,rs])=>{
+  const strengths=[3,2,1].map(grade=>rs.filter(r=>r.grade===grade));
+  return {key,rows:rs,confirmed:strengths[0].length,conditional:strengths[1].length,explore:strengths[2].length,grade:Math.max(...rs.map(r=>r.grade)),
+    matchedSizes:new Set(rs.map(r=>r.cat+'|'+r.size)).size,operators:new Set(rs.map(r=>r.o.brand)).size,
+    name:known.get(key)?.name||cityName(key),province:known.get(key)?.province||rs[0].o.province||''};
+ });
+ out.sort((a,b)=>b.grade-a.grade||b.matchedSizes-a.matchedSizes||b.operators-a.operators||a.name.localeCompare(b.name,'en-CA'));
+ return out;
+}
+function v31Tier(grade){return grade===3?'Documented product':grade===2?'Conditional':'Size only';}
+function v31TierClass(grade){return grade===3?'verified':grade===2?'conditional':'exploratory';}
+function v31SpanTier(grade){return `<span class="v31-tier ${v31TierClass(grade)}">${v31Tier(grade)}</span>`;}
+function v31SetSelect(id,choices,value){
+ const el=document.getElementById(id);
+ el.innerHTML=choices.length?choices.map(c=>`<option value="${esc(c.key)}">${esc(c.label)}</option>`).join(''):'<option value="">No qualifying observations</option>';
+ el.value=choices.some(c=>c.key===value)?value:'';
+ el.disabled=!choices.length;
+}
+function v31ProvinceName(raw){const named={ON:'Ontario',NB:'New Brunswick',NS:'Nova Scotia',MB:'Manitoba',SK:'Saskatchewan',AB:'Alberta',BC:'British Columbia',QC:'Quebec',PE:'Prince Edward Island',NL:'Newfoundland and Labrador'};return named[raw]||raw;}
+function v31RenderLandmark(){
+ const baselines=v31LmRows(),all=v31Matches(baselines),catOpts=[{key:'all',label:'All eligible Landmark units'}];
+ for(const cat of ['climate','drive'])if([...baselines.values()].some(b=>b.cat===cat))catOpts.push({key:cat,label:v31CatLabel[cat]});
+ if(!catOpts.some(c=>c.key===v31State.cat))v31State.cat='all';
+ v31SetSelect('v31-lm-cat',catOpts,v31State.cat);
+ // Size menu is based on the selected category and previously selected city; every size is exact.
+ const sizeMatches=all.filter(r=>(v31State.showLeads||r.grade>=2)&&(v31State.cat==='all'||r.cat===v31State.cat)).filter(r=>!v31State.city||r.city===v31State.city);
+ let sizeSet=new Set(sizeMatches.map(r=>r.size));
+ if(v31State.size!=='all'&&!sizeSet.has(v31State.size))v31State.size='all';
+ const sizeOpts=[{key:'all',label:'All identical dimensions'}].concat([...sizeSet].sort((a,b)=>{
+  const area=k=>k.split('x').map(Number).reduce((p,v)=>p*v,1);
+  return area(a)-area(b)||a.localeCompare(b);
+ }).map(size=>({key:size,label:v31SizeLabel(size)})));
+ v31SetSelect('v31-lm-size',sizeOpts,v31State.size);
+ let candidates=v31CityCandidates(all);
+ if(!candidates.some(c=>c.key===v31State.city))v31State.city=candidates[0]?.key||'';
+ const opts=candidates.map(c=>{
+  const grade=c.grade===3?'documented':c.grade===2?'conditional':'size-only';
+  return {key:c.key,label:`${c.name} · ${v31ProvinceName(c.province)} — ${c.matchedSizes} exact size${c.matchedSizes===1?'':'s'} · ${grade}`};
+ });
+ v31SetSelect('v31-lm-city',opts,v31State.city);
+ // A new city can change which exact dimensions are available; refresh the size selector without imposing a new filter.
+ sizeSet=new Set(all.filter(r=>(v31State.showLeads||r.grade>=2)&&r.city===v31State.city&&(v31State.cat==='all'||r.cat===v31State.cat)).map(r=>r.size));
+ if(v31State.size!=='all'&&!sizeSet.has(v31State.size))v31State.size='all';
+ const citySizes=[{key:'all',label:'All identical dimensions'},...[...sizeSet].sort((a,b)=>{
+  const area=k=>k.split('x').map(Number).reduce((p,v)=>p*v,1);return area(a)-area(b)||a.localeCompare(b);
+ }).map(s=>({key:s,label:v31SizeLabel(s)}))];
+ v31SetSelect('v31-lm-size',citySizes,v31State.size);
+ document.getElementById('v31-show-leads').checked=v31State.showLeads;
+ const chosen=candidates.find(c=>c.key===v31State.city),cityRows=all.filter(r=>r.city===v31State.city&&
+  (v31State.showLeads||r.grade>=2)&&(v31State.cat==='all'||r.cat===v31State.cat)&&(v31State.size==='all'||r.size===v31State.size));
+ const eligible=cityRows.filter(r=>r.grade>=2),grade3=cityRows.filter(r=>r.grade===3),exactSizes=new Set(cityRows.map(r=>r.cat+'|'+r.size));
+ const brands=new Set(cityRows.map(r=>r.o.brand));
+ const kpis=[
+  [String(candidates.length),'Cities with exact-size candidates'],
+  [String(exactSizes.size),'Identical Landmark unit configurations'],
+  [String(brands.size),'Competitor operators in selected city'],
+  [String(eligible.length),'Product matches · documented / conditional']
+ ];
+ document.getElementById('v31-lm-kpis').innerHTML=kpis.map(([val,label])=>`<div class="v31-kpi"><b>${esc(val)}</b><span>${esc(label)}</span></div>`).join('');
+ document.getElementById('v31-lm-summary').textContent=candidates.length?
+  `${candidates.length} cities have ${v31State.showLeads?'exact-size candidates (including unverified types)':'documented or conditional exact-size product matches'} for the selected category/size. ${chosen.name} has ${cityRows.length} source-linked matching-size rates (${grade3.length} documented, ${cityRows.filter(r=>r.grade===2).length} conditional, ${cityRows.filter(r=>r.grade===1).length} size-only). City options are based on the current filters.`:
+  'No eligible exact-size candidates are published for these Landmark units. Missing evidence does not mean there are no competitors.';
+ document.getElementById('v31-lm-matrix-desc').textContent=chosen?
+  `Landmark Saint John vs ${chosen.name}, ${v31ProvinceName(chosen.province)} · exact dimensions only · regular rates in CAD per calendar month. Multiple Landmark floors are shown as a range.`:
+  'Choose a city when price evidence becomes available.';
+ // Size-level medians: one vote per operator; use the strongest product-evidence tier only.
+ const groups=new Map();
+ for(const r of cityRows){const key=r.cat+'|'+r.size;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r);}
+ const comparisons=[];
+ for(const [key,group] of groups){
+  const base=baselines.get(key),best=Math.max(...group.map(r=>r.grade));
+  const trusted=group.filter(r=>r.grade===best),byOperator=new Map();
+  for(const r of trusted){const brand=r.o.brand||'Unknown operator';if(!byOperator.has(brand))byOperator.set(brand,[]);byOperator.get(brand).push(r.monthly);}
+  const peer=best>=2?cityMedian([...byOperator.values()].map(arr=>cityMedian(arr))):null;
+  const lm=cityMedian(base.months),delta=peer!=null&&lm>0?(peer/lm-1)*100:null;
+  comparisons.push({base,best,peer,lm,delta,operators:byOperator.size,rows:group.length});
+ }
+ comparisons.sort((a,b)=>a.base.cat.localeCompare(b.base.cat)||a.base.area-b.base.area||a.base.size.localeCompare(b.base.size));
+ const matrix=comparisons.map(c=>{
+  const lo=Math.min(...c.base.months),hi=Math.max(...c.base.months),lmRange=lo===hi?v31Rate(lo):`${v31Rate(lo)}–${v31Rate(hi)}`;
+  const delta=c.delta==null?'<span class="v31-muted">Not comparable</span>':`<span class="v31-price ${c.delta>0?'v31-price-higher':'v31-price-lower'}">${c.delta>0?'+':''}${c.delta.toFixed(1)}%</span><span class="v31-subcell">${c.best===2?'Indicative · access unverified':'Product attributes documented'}</span>`;
+  return `<tr><td><strong>${esc(v31CatLabel[c.base.cat])}</strong><span class="v31-subcell">${esc(v31SizeLabel(c.base.size))} · ${c.base.months.length} Landmark listing${c.base.months.length===1?'':'s'}</span></td>
+  <td><span class="v31-price">${lmRange}</span><span class="v31-subcell">Median ${v31Rate(c.lm)} · regular rate</span></td>
+  <td><span class="v31-price">${c.peer!=null?v31Rate(c.peer):'—'}</span><span class="v31-subcell">${c.peer!=null?`${c.operators} operator${c.operators===1?'':'s'} · operator median`:'Category not verified'}</span></td>
+  <td>${delta}</td><td>${v31SpanTier(c.best)}<span class="v31-subcell">${c.rows} observed price${c.rows===1?'':'s'} · strongest evidence tier used</span></td></tr>`;
+ }).join('');
+ document.getElementById('v31-lm-matrix').innerHTML=matrix||'<tr><td colspan="5">No exact-dimension published candidates are available for the selected city and filters.</td></tr>';
+ const sorted=cityRows.slice().sort((a,b)=>b.grade-a.grade||a.cat.localeCompare(b.cat)||a.baseline.area-b.baseline.area||a.o.brand.localeCompare(b.o.brand)||a.monthly-b.monthly);
+ document.getElementById('v31-lm-evidence').innerHTML=sorted.map(r=>{
+  const d=r.o.observed_at||r.o.observed_at_utc||'';const when=d&&!Number.isNaN(new Date(d).getTime())?new Date(d).toLocaleDateString('en-CA',{timeZone:'UTC'}):'Not recorded';
+  const billing=r.o.billing_period==='4_weeks'?'4 weeks × 13/12':r.o.billing_period==='30_days'?'30 days × 365/360':'Monthly';
+  const status=r.grade===1?'Climate/access not documented':r.grade===2?'One access attribute unknown':'Category/access documented';
+  return `<tr><td><strong>${esc(r.o.brand||'Unknown brand')}</strong><span class="v31-subcell">${esc(r.o.branch||'Branch not named')}</span></td>
+   <td>${esc(v31SizeLabel(r.size))}<span class="v31-subcell">${esc(v31CatLabel[r.cat])}</span></td>
+   <td><strong>${v31Rate(r.monthly)}</strong><span class="v31-subcell">Advertised regular base</span></td>
+   <td>${v31SpanTier(r.grade)}<span class="v31-subcell">${esc(status)}</span></td><td>${esc(billing)}</td><td>${esc(when)}</td>
+   <td><a class="dotlink" target="_blank" rel="noopener noreferrer" href="${esc(r.o.source_url)}">Official source</a></td></tr>`;
+ }).join('')||'<tr><td colspan="7">No matching price evidence is available.</td></tr>';
+ const onlySize=cityRows.filter(r=>r.grade===1).length;
+ document.getElementById('v31-lm-market-note').textContent=`Reference: Landmark's listed regular price (not its introductory promotion). Competitor base rates annualized by source billing period and divided by 12. Multiple branches per brand are collapsed to one operator median for each exact size. ${onlySize} size-only observations are evidence leads, not certified price comparisons. `+
+   `Each size is evaluated separately; no pooled cross-size market average. Operator counts are not market-share weights.`;
+ document.getElementById('v31-lm-method').textContent=`Published data: ${DATA.offers.length} competitor offer records, ${DATA.coverage.length} registered locations and ${DATA.landmark.length} Landmark listing cards. `+
+  `Only priced, QA-eligible, non-waitlist offers with exact dimensions and valid public sources enter the match engine. `+
+  `Landmark parking cards with width = 0 cannot be dimension-matched and are excluded rather than guessed. `+
+  `This view excludes Saint John competitors because it benchmarks other cities; use City vs City for local market comparisons. `+
+  `Every rate is a dated observation, not a guaranteed current quote. Unknown features, ancillary charges and floor/access differences are never inferred.`;
+}
+function v31SwitchMode(mode){
+ v31State.mode=mode==='market'?'market':'landmark';
+ document.getElementById('v31-landmark-mode').hidden=v31State.mode!=='landmark';
+ document.getElementById('v31-market-mode').hidden=v31State.mode!=='market';
+ for(const btn of document.querySelectorAll('[data-city-mode]')){
+  const active=btn.dataset.cityMode===v31State.mode;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',active?'true':'false');
+ }
+ if(v31State.mode==='market')cityRender();else v31RenderLandmark();
+}
+document.getElementById('v31-city-modes').addEventListener('click',event=>{
+ const btn=event.target.closest('button[data-city-mode]');if(btn)v31SwitchMode(btn.dataset.cityMode);
+});
+document.getElementById('v31-lm-city').addEventListener('change',event=>{v31State.city=event.target.value;v31State.size='all';v31RenderLandmark();});
+document.getElementById('v31-lm-cat').addEventListener('change',event=>{v31State.cat=event.target.value;v31State.size='all';v31RenderLandmark();});
+document.getElementById('v31-lm-size').addEventListener('change',event=>{v31State.size=event.target.value;v31RenderLandmark();});
+document.getElementById('v31-show-leads').addEventListener('change',event=>{v31State.showLeads=event.target.checked;v31State.city='';v31State.size='all';v31RenderLandmark();});
+
 document.getElementById('pricing-city').addEventListener('change',e=>{curr.city=e.target.value;renderPricing();});
 
 /* V11 public-data feed. We retain embedded V10 records only for offline/fetch-error fallback.
@@ -805,7 +1026,7 @@ function applyPublishedData(next){
   localIds.clear();DATA.coverage.filter(x=>x.tier==='direct').forEach(x=>localIds.add(x.brand+'|'+x.branch));
   const svcCount=document.getElementById('service-total-dimensions');if(svcCount)svcCount.textContent=DATA.services.length;
   const intro=document.querySelector('#view-catalog .page-intro .body');if(intro)intro.textContent='All '+DATA.offers.length+' retained competitor offer records. Each rate has its own source and observation date; unresolved prices are unranked.';
-  cityUpdateOptions();renderOverview();renderPricing();renderServices();renderOffers();renderCoverage();v9Render();cityRender();
+  cityUpdateOptions();renderOverview();renderPricing();renderServices();renderOffers();renderCoverage();v9Render();cityRender();v31RenderLandmark();
   lastPublishedFingerprint=fingerprint;
  }
  syncLabel('PUBLISHED DATA', next.sync?.crawler_run_at_utc||next.crawler_run_generated_at||next.updated);
@@ -824,7 +1045,7 @@ async function refreshPublishedData(){
   console.warn('Landmark: public data unavailable; showing last verified snapshot.',err);
  }
 }
-cityUpdateOptions();cityRender();
+cityUpdateOptions();cityRender();v31RenderLandmark();
 refreshPublishedData();
 if(location.protocol==='https:'||location.protocol==='http:')setInterval(refreshPublishedData,90000);
 </script>
