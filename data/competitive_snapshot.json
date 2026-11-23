@@ -110956,7 +110956,7 @@
       "landmark_url": "https://www.landmarknb.com/661-millidge-avenue-saint-john-nb-e2k-2n7"
     }
   ],
-  "updated": "2026-11-23T08:04:21+00:00",
+  "updated": "2026-11-23T14:43:43+00:00",
   "sourceNote": "Competitor crawler update: 2026-11-15T08:13:20+00:00; Landmark unit observations retain their own observed_at_utc.",
   "lmUrl": "https://www.landmarknb.com/661-millidge-avenue-saint-john-nb-e2k-2n7",
   "crawler_run_generated_at": "2026-11-23T08:04:14+00:00",
@@ -110964,7 +110964,7 @@
     "schema": "landmark-dashboard-v1",
     "published_source": "local_windows_crawler",
     "crawler_run_at_utc": "2026-11-23T08:04:14+00:00",
-    "last_built_at_utc": "2026-11-23T08:04:21+00:00",
+    "last_built_at_utc": "2026-11-23T14:43:43+00:00",
     "updated_branches": 20,
     "covered_locations": 78,
     "competitor_offers": 224,
@@ -162432,10 +162432,10 @@
     "staged_total": 2282,
     "qa_eligible": 1863,
     "qa_quarantined": 419,
-    "legacy_published_preserved": 1544,
+    "legacy_published_preserved": 1875,
     "already_published_review_removed": 0,
-    "new_eligible_added": 331,
-    "existing_rows_replaced": 1532,
+    "new_eligible_added": 0,
+    "existing_rows_replaced": 1863,
     "published_offer_count": 1875,
     "published_coverage_count": 482,
     "climate_unverified_but_base_eligible": 314
