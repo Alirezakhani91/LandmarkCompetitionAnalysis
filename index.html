@@ -189,6 +189,31 @@
 .v39-chips b{color:#0c6f65}.v39-tag{color:#896013;font-weight:800;font-size:9px;letter-spacing:.03em;margin:3px 0 4px}
 @media(max-width:680px){.v39-peer{padding:14px}.v39-chips span{font-size:10px}}
 
+
+
+/* V40 — management-selected You-Store: orange consistently across every dashboard view.
+   Source status and billing caveat are never silently upgraded. */
+:root{--v40-orange:#b45309;--v40-orange-strong:#9a4807;--v40-orange-soft:#fff2e5;--v40-orange-border:#f7ba72}
+.v40-youstore-name{display:inline!important;color:var(--v40-orange-strong)!important;font-weight:850!important;white-space:normal;cursor:help;border-bottom:1px dotted #d58b40;text-decoration:none!important;outline-offset:3px}
+.v40-youstore-name::before{content:"●";font-size:.68em;margin-right:4px;color:#ed9231;vertical-align:1px}
+.v40-youstore-name:focus-visible{outline:2px solid var(--v40-orange)!important;border-radius:3px}
+/* Selected competitor is identifiable without breaking sort order. */
+tr.v40-youstore-row>td{background:#fff7ed!important;border-bottom-color:#f6d7b0!important}
+tr.v40-youstore-row:hover>td{background:#ffedd5!important}
+tr.v40-youstore-row>td:first-child{box-shadow:inset 3px 0 0 #e08a2d}
+tr.v40-youstore-row td strong,tr.v40-youstore-row td .v38-rate,tr.v40-youstore-row td .v31-price,tr.v40-youstore-row td .amount{color:var(--v40-orange-strong)!important}
+tr.v40-youstore-row .v39-tag{background:#ffead4;color:#a64d04!important;border:1px solid #efc18e;padding:3px 6px;border-radius:5px;display:inline-block}
+.v40-youstore-card{border-color:var(--v40-orange-border)!important;background-color:#fff8f0!important;box-shadow:inset 3px 0 0 #e49b48}
+.v40-youstore-card .v40-youstore-name{color:var(--v40-orange-strong)!important}
+select option.v40-youstore-option{color:var(--v40-orange-strong);font-weight:750}
+#v40-legend{display:block;margin:0 12px 15px;padding:10px 11px;border-radius:10px;border:1px solid #99601d66;color:#ffd09f;background:#cc772014;font-size:10px;font-weight:700;line-height:1.55;cursor:help}
+#v40-legend .v40-legend-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f39a3d;margin-right:5px;vertical-align:middle}
+#v40-tooltip{display:none;position:fixed;left:0;top:0;z-index:2147483000;max-width:min(370px,calc(100vw - 28px));padding:12px 14px;background:#172e40;color:#f8fafc;border:1px solid #e49b48;border-radius:10px;box-shadow:0 12px 28px #081b2c50;line-height:1.52;font-size:12px;font-weight:520;pointer-events:none;white-space:normal;text-align:left}
+#v40-tooltip.visible{display:block}
+#v40-tooltip strong{display:block;color:#ffc38a;margin-bottom:4px;font-size:12px}
+@media(max-width:1040px){#v40-legend{display:none}}
+@media(max-width:690px){.v40-youstore-name::before{font-size:.5em}}
+
 </style>
 </head>
 <body>
@@ -213,13 +238,13 @@
       <button type="button" class="nav-btn" data-view="sqft" title="Compare 30-day price per square foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V4h16M7 17l10-10M6 12h4v4H6zM14 6h4v4h-4z"/></svg><span>Price per Sq Ft</span></button>
       <button type="button" class="nav-btn" data-view="evidence" title="Sources and coverage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h10l4 4v14H3V3h4z"/><path d="M8 12h8M8 16h8M8 8h3"/></svg><span>Sources & coverage</span></button>
     </nav>
+    <div id="v40-legend" title="Management-selected competitor. Three publicly listed unit prices are included in analysis. The site also mentions four-week billing; invoice cadence and mandatory insurance are unverified. The 8×20 unit remains review-only."><span class="v40-legend-dot"></span>Orange = management-selected competitor <span aria-hidden="true">ⓘ</span></div>
     <div class="sidebar-bottom"><span class="dot"></span><b>Evidence-linked dataset</b><p><span id="sync-sidebar-date">Checking published data...</span><br>Public website observations. Prices can change. No private customer data.</p></div>
     <div class="nav-note">CANADA · MULTI-CITY INTELLIGENCE</div>
   </aside>
   <main class="main"><div class="main-inner">
     <div class="topbar"><div class="breadcrumbs">LANDMARK <strong>/ COMPETITIVE POSITION</strong></div><div class="top-right"><span class="top-chip"><span class="small-dot"></span>INTERACTIVE · <b id="sync-status">LOADING DATA</b></span><span class="top-chip" id="sync-date">CHECKING...</span></div></div>
     <section id="view-overview" class="view active">
-<div class="v39-peer"><div><strong>Saint John You-Store · source-linked operator · 385 Rothesay Avenue, Saint John</strong><p>Three single-price units are <b>management-approved for analytical comparison</b> using the public “per month” display. The operator also states billing every 4 weeks: invoice cadence and mandatory insurance cost remain unresolved. Outdoor stand-alone drive-up containers; <b>NOT climate-controlled</b>. The 8×20 card displays two amounts without a clear regular/promo label.</p><a href="https://www.sjyoustore.ca/units" target="_blank" rel="noopener noreferrer">Official unit prices ↗</a><a href="https://www.sjyoustore.ca/faq" target="_blank" rel="noopener noreferrer">Official services &amp; contract terms ↗</a></div><div class="v39-chips"><span>8×5 · <b>$84</b></span><span>8×8 · <b>$134</b></span><span>8×16 · <b>$258</b></span><span>8×20 · <b>$226 / $326</b> · review</span></div></div>
       <div class="hero"><div class="hero-content"><div class="eyebrow">Saint John market intelligence</div><h1>Know the market.<br><i>Price with purpose.</i></h1><p>A clearer view of Landmark's published rates, genuine like-for-like competitors, and the services that shape customer choice.</p><div class="hero-caption"><span>Prices before tax and unverified add-on fees</span><span>Direct evidence links throughout</span></div></div><div class="hero-orbit"><div class="orbit-ring"></div><div class="orbit-label"><b>03<span style="font-size:22px">+</span></b><span>CORE BENCHMARKS</span></div><div class="orbit-pip pip1">5 × 10 Climate</div><div class="orbit-pip pip2">10 × 20 Drive-up</div></div></div>
       <div class="grid4">
         <div class="metric"><div class="metric-label">Landmark unit listings</div><div class="metric-num" id="metric-lm">28</div><div class="metric-detail">Publicly displayed rate cards</div></div>
@@ -239,7 +264,6 @@
       <div class="lever-grid"><div class="lever"><div class="lever-num">01 / RATE ARCHITECTURE</div><h3>Test the 10×10 and 10×15</h3><p>Overlay occupancy, conversion, and tenant lifetime before changing regular prices. The widest matched gaps occur in these categories.</p></div><div class="lever"><div class="lever-num">02 / VALUE STORY</div><h3>Make the premium tangible</h3><p>Show climate control, elevator, carts, business center and package receiving near the pricing experience.</p></div><div class="lever"><div class="lever-num">03 / CUSTOMER EXPERIENCE</div><h3>Validate convenience gaps</h3><p>Confirm smart locks, lock inclusion, deposits and administration fees internally; only 24/7 access is a confirmed availability gap.</p></div></div>
     </section>
     <section id="view-pricing" class="view">
-<div class="v39-peer"><div><strong>Saint John You-Store · source-linked operator · 385 Rothesay Avenue, Saint John</strong><p>Three single-price units are <b>management-approved for analytical comparison</b> using the public “per month” display. The operator also states billing every 4 weeks: invoice cadence and mandatory insurance cost remain unresolved. Outdoor stand-alone drive-up containers; <b>NOT climate-controlled</b>. The 8×20 card displays two amounts without a clear regular/promo label.</p><a href="https://www.sjyoustore.ca/units" target="_blank" rel="noopener noreferrer">Official unit prices ↗</a><a href="https://www.sjyoustore.ca/faq" target="_blank" rel="noopener noreferrer">Official services &amp; contract terms ↗</a></div><div class="v39-chips"><span>8×5 · <b>$84</b></span><span>8×8 · <b>$134</b></span><span>8×16 · <b>$258</b></span><span>8×20 · <b>$226 / $326</b> · review</span></div></div>
       <div class="page-intro"><div><div class="section-kicker">Interactive price explorer</div><h1 class="title">Every size. <span style="color:#108e84">An honest comparison.</span></h1><p class="body">Select a Landmark product to see its published variants beside exact-size competitor offers. Only the same storage format with compatible climate status qualifies as a direct comparison.</p></div><span class="page-tag">NO INFERRED MARKET RANKS</span></div>
       <div class="selectors"><div class="switchbar" id="category-switch"><button type="button" data-cat="indoor_storage" class="selected">Indoor climate</button><button type="button" data-cat="drive_up">Drive-up</button><button type="button" data-cat="outdoor_parking">Outdoor parking</button></div><div class="switchbar" id="mode-switch"><button type="button" data-mode="regular" class="selected">Regular monthly</button><button type="button" data-mode="year1">Year-one scenario</button></div></div>
       <div class="city-inline-filter"><label for="pricing-city">Compare Landmark with competitors in</label><select class="city-select" id="pricing-city" aria-label="Filter Price explorer competitors by city"></select><span class="city-hint">Landmark rates remain based in Saint John; only peer offers change.</span></div>
@@ -250,7 +274,6 @@
       <div class="notice"><strong>Methodology:</strong> A four-week rate is converted to a monthly equivalent using ×13/12. “Year-one scenario” adjusts Landmark's rate for advertised 50% promotions and assumes the regular price remains unchanged; it does not estimate competitors' promotional contract costs. Unverified fees, HST, deposit, insurance and availability are excluded. Parking lengths listed as 0×16 / 0×20 are not valid floor-area comparisons.</div>
     </section>
 <section id="view-value" class="view">
-<div class="v39-peer"><div><strong>Saint John You-Store · source-linked operator · 385 Rothesay Avenue, Saint John</strong><p>Three single-price units are <b>management-approved for analytical comparison</b> using the public “per month” display. The operator also states billing every 4 weeks: invoice cadence and mandatory insurance cost remain unresolved. Outdoor stand-alone drive-up containers; <b>NOT climate-controlled</b>. The 8×20 card displays two amounts without a clear regular/promo label.</p><a href="https://www.sjyoustore.ca/units" target="_blank" rel="noopener noreferrer">Official unit prices ↗</a><a href="https://www.sjyoustore.ca/faq" target="_blank" rel="noopener noreferrer">Official services &amp; contract terms ↗</a></div><div class="v39-chips"><span>8×5 · <b>$84</b></span><span>8×8 · <b>$134</b></span><span>8×16 · <b>$258</b></span><span>8×20 · <b>$226 / $326</b> · review</span></div></div>
     <div class="v9-hero"><div><div class="v9-eyebrow">LANDMARK / CATEGORY VALUE INDEX</div><h1>One storage type.<br><em>Every priced competitor.</em></h1><p>Compare average annual CAD/ft² within a storage type and a meaningful size band. Each qualifying operator receives one row, with sources one click away.</p></div><div class="v9-hero-token" id="v9-hero-unit">CAD / ft²</div></div>
     <div class="v9-card">
       <span class="v9-label">01 / Storage type</span><div class="v9-typegrid" id="v9-types"></div>
@@ -283,7 +306,6 @@
   </section>
 
     <section id="view-cities" class="view">
-<div class="v39-peer"><div><strong>Saint John You-Store · source-linked operator · 385 Rothesay Avenue, Saint John</strong><p>Three single-price units are <b>management-approved for analytical comparison</b> using the public “per month” display. The operator also states billing every 4 weeks: invoice cadence and mandatory insurance cost remain unresolved. Outdoor stand-alone drive-up containers; <b>NOT climate-controlled</b>. The 8×20 card displays two amounts without a clear regular/promo label.</p><a href="https://www.sjyoustore.ca/units" target="_blank" rel="noopener noreferrer">Official unit prices ↗</a><a href="https://www.sjyoustore.ca/faq" target="_blank" rel="noopener noreferrer">Official services &amp; contract terms ↗</a></div><div class="v39-chips"><span>8×5 · <b>$84</b></span><span>8×8 · <b>$134</b></span><span>8×16 · <b>$258</b></span><span>8×20 · <b>$226 / $326</b> · review</span></div></div>
       <div class="city-hero"><div><div class="city-kicker">GEOGRAPHY / EVIDENCE-LED PRICING</div><h1>Compare confidently.<br><em>Without guesswork.</em></h1><p>Start with Landmark's published unit rates or explore two market cities. Exact dimensions, normalized billing and product evidence determine which comparisons are defensible.</p></div><span class="city-chip">CANADA · LIVE DATA</span></div>
       <div class="v31-modebar" id="v31-city-modes" role="group" aria-label="Comparison mode">
         <button type="button" data-city-mode="landmark" class="v31-mode active" aria-pressed="true">Landmark vs Canada <small>Compare our rates to other cities</small></button>
@@ -328,14 +350,12 @@
       </div>
     </section>
     <section id="view-services" class="view">
-<div class="v39-peer"><div><strong>Saint John You-Store · source-linked operator · 385 Rothesay Avenue, Saint John</strong><p>Three single-price units are <b>management-approved for analytical comparison</b> using the public “per month” display. The operator also states billing every 4 weeks: invoice cadence and mandatory insurance cost remain unresolved. Outdoor stand-alone drive-up containers; <b>NOT climate-controlled</b>. The 8×20 card displays two amounts without a clear regular/promo label.</p><a href="https://www.sjyoustore.ca/units" target="_blank" rel="noopener noreferrer">Official unit prices ↗</a><a href="https://www.sjyoustore.ca/faq" target="_blank" rel="noopener noreferrer">Official services &amp; contract terms ↗</a></div><div class="v39-chips"><span>8×5 · <b>$84</b></span><span>8×8 · <b>$134</b></span><span>8×16 · <b>$258</b></span><span>8×20 · <b>$226 / $326</b> · review</span></div></div>
       <div class="page-intro"><div><div class="section-kicker">Service intelligence</div><h1 class="title">What they offer.<br><span style="color:#108e84">What we can prove.</span></h1><p class="body">We distinguish one confirmed Landmark limitation from offerings that are merely not documented on its public website. Every competitor claim includes a clickable official source.</p></div><span class="page-tag">NO ASSUMPTIONS FROM SILENCE</span></div>
       <div class="service-intro"><div class="service-overview"><span>CONFIRMED GAP</span><b>24/7 access</b><p>Landmark publishes 6 AM–11 PM; several operators advertise round-the-clock unit access.</p></div><div class="service-overview"><span>POLICIES TO VERIFY</span><b>3 key terms</b><p>Free lock, no deposit, and no administration fee are advertised by some peers, but Landmark's status is unverified.</p></div><div class="service-overview"><span>CONFIRMED LANDMARK OFFERINGS</span><b>Climate + convenience</b><p>Indoor storage, elevator, moving supplies, business center and package receiving are published by Landmark.</p></div></div>
       <div class="panel"><div class="panel-head"><div><div class="section-kicker">05 / Claim-by-claim</div><h2>Service comparison matrix</h2><p class="sub">Click a peer name to verify its claimed offering at the original source.</p></div><span class="tiny-pill"><span id="service-total-dimensions">20</span> SERVICE DIMENSIONS</span></div><div class="service-toolbar"><div class="switchbar" id="service-filter"><button type="button" data-service="all" class="selected">All services</button><button type="button" data-service="gap">Confirmed gap</button><button type="button" data-service="unknown">To verify</button><button type="button" data-service="yes">Landmark offers</button></div><span class="sortnote" id="service-count"></span></div><div id="service-rows"></div></div>
       <div class="notice"><strong>Important distinction:</strong> “Not verified” means Landmark's public materials do not establish the feature or policy — not that Landmark lacks it. Competitor claims apply only to the stated site or product. Pages can change after the observation date.</div>
     </section>
     <section id="view-catalog" class="view">
-<div class="v39-peer"><div><strong>Saint John You-Store · source-linked operator · 385 Rothesay Avenue, Saint John</strong><p>Three single-price units are <b>management-approved for analytical comparison</b> using the public “per month” display. The operator also states billing every 4 weeks: invoice cadence and mandatory insurance cost remain unresolved. Outdoor stand-alone drive-up containers; <b>NOT climate-controlled</b>. The 8×20 card displays two amounts without a clear regular/promo label.</p><a href="https://www.sjyoustore.ca/units" target="_blank" rel="noopener noreferrer">Official unit prices ↗</a><a href="https://www.sjyoustore.ca/faq" target="_blank" rel="noopener noreferrer">Official services &amp; contract terms ↗</a></div><div class="v39-chips"><span>8×5 · <b>$84</b></span><span>8×8 · <b>$134</b></span><span>8×16 · <b>$258</b></span><span>8×20 · <b>$226 / $326</b> · review</span></div></div>
       <div class="page-intro"><div><div class="section-kicker">Full competitor catalog</div><h1 class="title">The observed <span style="color:#108e84">rate library.</span></h1><p class="body">All published crawler price records, retained with their confidence and source links. Not every record is usable for a pricing decision.</p></div><span class="page-tag">PUBLIC SOURCE RECORDS</span></div>
       <div class="panel"><div class="catalog-toolbar"><input class="search" type="search" id="offer-search" placeholder="Search brand, branch or size..." aria-label="Search offers"><select class="select" id="offer-scope" aria-label="Location filter"><option value="all">All registered locations</option><option value="direct">Greater Saint John</option></select><select class="select" id="offer-city" aria-label="Filter offer library by city"></select><select class="select" id="offer-quality" aria-label="Price quality filter"><option value="all">All price records</option><option value="priced">Usable base rates</option><option value="review">Requires review</option></select></div><div class="table-wrap"><table class="table" aria-label="Competitor prices"><thead><tr><th>Operator / location</th><th>Size</th><th>Product</th><th>Advertised base</th><th>Intro offer</th><th>Monthly equivalent</th><th>Data quality</th><th>Evidence</th></tr></thead><tbody id="offer-body"></tbody></table></div><div class="pager"><span id="offer-paging"></span><div><button type="button" id="offers-prev">Previous</button> <button type="button" id="offers-next">Next</button></div></div></div>
       <div class="notice"><strong>Read before comparing:</strong> Mini Mall introductory rates are not standard recurring rates; billing is every four weeks and additional charges may apply. An unpriced or ambiguous record is deliberately shown as “Review”, never as $0. Only branch-attributable Apple evidence is eligible; unknown billing terms and unmatched branches are excluded from firm rankings.</div>
@@ -349,7 +369,6 @@
         <div class="table-wrap"><table class="table"><thead><tr><th>Operator / location</th><th>Unit</th><th>Raw advertised rate</th><th>Billing status</th><th>Why review is required</th><th>Observed</th><th>Source</th><th>Compare</th></tr></thead><tbody id="v36-review-body"></tbody></table></div>
         <div class="pager"><span id="v36-review-paging"></span><div><button type="button" id="v36-review-prev">Previous</button> <button type="button" id="v36-review-next">Next</button></div></div>
       </div>
-      <div class="notice"><strong>Saint John You-Store example:</strong> its unit cards label $84 (8×5), $134 (8×8) and $258 (8×16) as “per month,” while the operator's homepage says the billing cycle is four weeks. The 8×20 card contains multiple advertised amounts. These observations stay visible here but are excluded from monthly price rankings until the billing terms and multiple rates are resolved.</div>
     </section>
 
     <section id="view-smart-compare" class="view">
@@ -378,7 +397,6 @@
       </div>
     </section>
     <section id="view-sqft" class="view">
-<div class="v39-peer"><div><strong>Saint John You-Store · source-linked operator · 385 Rothesay Avenue, Saint John</strong><p>Three single-price units are <b>management-approved for analytical comparison</b> using the public “per month” display. The operator also states billing every 4 weeks: invoice cadence and mandatory insurance cost remain unresolved. Outdoor stand-alone drive-up containers; <b>NOT climate-controlled</b>. The 8×20 card displays two amounts without a clear regular/promo label.</p><a href="https://www.sjyoustore.ca/units" target="_blank" rel="noopener noreferrer">Official unit prices ↗</a><a href="https://www.sjyoustore.ca/faq" target="_blank" rel="noopener noreferrer">Official services &amp; contract terms ↗</a></div><div class="v39-chips"><span>8×5 · <b>$84</b></span><span>8×8 · <b>$134</b></span><span>8×16 · <b>$258</b></span><span>8×20 · <b>$226 / $326</b> · review</span></div></div>
       <div class="page-intro"><div><div class="section-kicker">V38 / National unit economics</div><h1 class="title">Price per <span style="color:#0d968b">square foot.</span></h1><p class="body">Compare observed self-storage rates at a consistent 30-day rental equivalent. Size bands and documented storage attributes stay separate; unverified prices never enter the verified medians.</p></div><span class="page-tag">CAD / FT² / 30 DAYS</span></div>
       <div class="v38-hero"><div><span class="eyebrow">CANADIAN STORAGE INTELLIGENCE</span><h2>One measure. Every documented operator.</h2><p>Group by brand, city, unit size and product attributes. Each unit is normalized to 30 days and divided by its actual floor area. Branch medians roll up to brand/city medians without over-weighting branches with many unit listings.</p></div><span class="v38-rule">Small ≤60 · Large 60–200 · XL &gt;200 sq ft</span></div>
       <div class="grid4 v38-metrics"><div class="metric"><div class="metric-label">Products in current selection</div><div class="metric-num" id="v38-product-count">—</div><div class="metric-detail">Rates with documented area and 30-day equivalent</div></div><div class="metric"><div class="metric-label">Operators represented</div><div class="metric-num" id="v38-brand-count">—</div><div class="metric-detail">Includes Landmark only when selected</div></div><div class="metric"><div class="metric-label">Median CAD / ft² / 30D</div><div class="metric-num" id="v38-median">—</div><div class="metric-detail">Median of displayed verified brand/city groups</div></div><div class="metric"><div class="metric-label">Review-only observations</div><div class="metric-num" id="v38-review-count">—</div><div class="metric-detail">Separate research, never counted in verified averages</div></div></div>
@@ -400,7 +418,6 @@
       </div>
     </section>
     <section id="view-evidence" class="view">
-<div class="v39-peer"><div><strong>Saint John You-Store · source-linked operator · 385 Rothesay Avenue, Saint John</strong><p>Three single-price units are <b>management-approved for analytical comparison</b> using the public “per month” display. The operator also states billing every 4 weeks: invoice cadence and mandatory insurance cost remain unresolved. Outdoor stand-alone drive-up containers; <b>NOT climate-controlled</b>. The 8×20 card displays two amounts without a clear regular/promo label.</p><a href="https://www.sjyoustore.ca/units" target="_blank" rel="noopener noreferrer">Official unit prices ↗</a><a href="https://www.sjyoustore.ca/faq" target="_blank" rel="noopener noreferrer">Official services &amp; contract terms ↗</a></div><div class="v39-chips"><span>8×5 · <b>$84</b></span><span>8×8 · <b>$134</b></span><span>8×16 · <b>$258</b></span><span>8×20 · <b>$226 / $326</b> · review</span></div></div>
       <div class="page-intro"><div><div class="section-kicker">Data integrity</div><h1 class="title">The evidence <span style="color:#108e84">behind the view.</span></h1><p class="body">This report covers the current research registry, but live price observations exist for only a portion. Source coverage is not completeness.</p></div><span class="page-tag">AUDITABLE SNAPSHOT</span></div>
       <div class="panel"><div class="panel-head"><div><div class="section-kicker">06 / Coverage quality</div><h2>Registered facilities ≠ priced facilities.</h2><p class="sub">Most recently retained crawler classifications, with dates per source.</p></div></div><div id="coverage-numbers" class="grid4"></div><div class="coverage-progress" id="coverage-progress"></div><div class="coverage-legend" id="coverage-legend"></div></div>
       <div class="section-heading"><div><h2>Facility-by-facility status</h2><p>Open the original page directly from any row to review the claim.</p></div></div>
@@ -1572,5 +1589,77 @@ async function refreshPublishedData(){
 cityUpdateOptions();cityRender();v31RenderLandmark();v38PopulateOptions();
 refreshPublishedData();
 if(location.protocol==='https:'||location.protocol==='http:')setInterval(refreshPublishedData,90000);
+</script>
+<script id="v40-ui" defer>
+(()=>{
+ 'use strict';
+ const BRAND='Saint John You-Store';
+ const REASON='Highlighted at management request: 3 source-listed You-Store prices are accepted for analytical comparison. The site also mentions four-week billing, so the invoice period is unresolved; mandatory insurance charges are unverified. The 8×20 unit remains review-only.';
+ const root=document.querySelector('.main');
+ if(!root)return;
+ let tip=document.getElementById('v40-tooltip');
+ if(!tip){tip=document.createElement('div');tip.id='v40-tooltip';tip.setAttribute('role','tooltip');tip.innerHTML='<strong>Why is this competitor orange?</strong><span></span>';tip.querySelector('span').textContent=REASON;document.body.append(tip);}
+ const eligibleTag=(el)=>!!el&&!el.closest('script,style,textarea,noscript,[data-v40-name]');
+ function decorate(){
+  // Native select options cannot contain nested rich markup. Orange bullet in their label;
+  // preserve option value so all brand filters work unchanged.
+  root.querySelectorAll('option').forEach(opt=>{
+   if(opt.dataset.v40Option)return;
+   if((opt.textContent||'').includes(BRAND)){
+    opt.classList.add('v40-youstore-option');opt.title=REASON;
+    opt.textContent='🟠 '+opt.textContent;opt.dataset.v40Option='1';
+   }
+  });
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
+   acceptNode(node){return node.nodeValue&&node.nodeValue.includes(BRAND)&&eligibleTag(node.parentElement)&&!node.parentElement.closest('option')?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;}
+  });
+  const hits=[];while(walker.nextNode())hits.push(walker.currentNode);
+  for(const node of hits){
+   if(!node.isConnected||!eligibleTag(node.parentElement))continue;
+   const parts=node.nodeValue.split(BRAND),frag=document.createDocumentFragment();
+   for(let i=0;i<parts.length;i++){
+    if(parts[i])frag.append(document.createTextNode(parts[i]));
+    if(i<parts.length-1){
+     const mark=document.createElement('span');mark.className='v40-youstore-name';mark.dataset.v40Name='1';mark.dataset.v40Tooltip=REASON;
+     mark.textContent=BRAND;mark.setAttribute('aria-label',BRAND+' — management selected, billing terms require review');
+     if(!node.parentElement.closest('a,button,select,summary'))mark.tabIndex=0;
+     frag.append(mark);
+     const anc=node.parentElement;
+     const row=anc.closest('tr');if(row){row.classList.add('v40-youstore-row');row.title=REASON;}
+     else{
+      const card=anc.closest('.source-card,.insight,.city-marketcard,.v37-selected,.v37-peer,.v37-match,.v9-marketcard,.v9-card,.v31-evidence-card,.v31-match,.service-card');
+      if(card){card.classList.add('v40-youstore-card');card.title=REASON;}
+     }
+    }
+   }
+   node.replaceWith(frag);
+  }
+ }
+ let pending=false;
+ function requestDecorate(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;decorate();});}
+ // Every dashboard section rerenders independently; decorate dynamically rendered rows.
+ const observer=new MutationObserver(requestDecorate);
+ observer.observe(root,{subtree:true,childList:true});
+ function targetFrom(event){return event.target instanceof Element?event.target.closest('.v40-youstore-name,#v40-legend'):null;}
+ function position(anchor,x,y){
+  if(!anchor)return;
+  const rect=anchor.getBoundingClientRect();
+  const px=Number.isFinite(x)?x:rect.left+Math.min(rect.width,40), py=Number.isFinite(y)?y:rect.bottom;
+  tip.style.left='10px';tip.style.top='10px';tip.classList.add('visible');
+  const tw=tip.offsetWidth,th=tip.offsetHeight;
+  tip.style.left=Math.max(12,Math.min(innerWidth-tw-12,px+13))+'px';
+  tip.style.top=Math.max(12,Math.min(innerHeight-th-12,py+17))+'px';
+ }
+ let active=null;
+ document.addEventListener('pointerover',event=>{const el=targetFrom(event);if(el){active=el;position(el,event.clientX,event.clientY);}});
+ document.addEventListener('pointermove',event=>{if(active&&event.pointerType==='mouse')position(active,event.clientX,event.clientY);});
+ document.addEventListener('pointerout',event=>{if(active&&active.contains(event.target)&&(!event.relatedTarget||!active.contains(event.relatedTarget))){active=null;tip.classList.remove('visible');}});
+ document.addEventListener('focusin',event=>{const el=targetFrom(event);if(el){active=el;position(el);}});
+ document.addEventListener('focusout',event=>{if(active&&active.contains(event.target)){active=null;tip.classList.remove('visible');}});
+ document.addEventListener('click',event=>{const el=targetFrom(event);if(el){if(event.pointerType==='touch'||event.detail===0){active=el;position(el);}}else{active=null;tip.classList.remove('visible');}});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'){active=null;tip.classList.remove('visible');}});
+ window.addEventListener('scroll',()=>{if(active){active=null;tip.classList.remove('visible');}},true);
+ requestDecorate();
+})();
 </script>
 </body></html>
