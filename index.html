@@ -171,6 +171,7 @@
       <button type="button" class="nav-btn" data-view="cities" title="City intelligence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V8l6-3v16M13 21V3l6 3v15M8 10h1M8 14h1M16 9h1M16 13h1"/></svg><span>City intelligence</span></button>
       <button type="button" class="nav-btn" data-view="services" title="Service intelligence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l9 4.5-9 4.5L3 7.5 12 3zm-9 9 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg><span>Service intelligence</span></button>
       <button type="button" class="nav-btn" data-view="catalog" title="Offer library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18M3 12h18M3 19h18"/><path d="M7 3v18"/></svg><span>Offer library</span></button>
+      <button type="button" class="nav-btn" data-view="raw-evidence" title="Observed prices pending review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4zM8 9h8M8 13h8M8 17h5"/><circle cx="19" cy="5" r="3" fill="#e8b161" stroke="none"/></svg><span>Raw rate evidence</span></button>
       <button type="button" class="nav-btn" data-view="evidence" title="Sources and coverage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h10l4 4v14H3V3h4z"/><path d="M8 12h8M8 16h8M8 8h3"/></svg><span>Sources & coverage</span></button>
     </nav>
     <div class="sidebar-bottom"><span class="dot"></span><b>Evidence-linked dataset</b><p><span id="sync-sidebar-date">Checking published data...</span><br>Public website observations. Prices can change. No private customer data.</p></div>
@@ -182,8 +183,8 @@
       <div class="hero"><div class="hero-content"><div class="eyebrow">Saint John market intelligence</div><h1>Know the market.<br><i>Price with purpose.</i></h1><p>A clearer view of Landmark's published rates, genuine like-for-like competitors, and the services that shape customer choice.</p><div class="hero-caption"><span>Prices before tax and unverified add-on fees</span><span>Direct evidence links throughout</span></div></div><div class="hero-orbit"><div class="orbit-ring"></div><div class="orbit-label"><b>03<span style="font-size:22px">+</span></b><span>CORE BENCHMARKS</span></div><div class="orbit-pip pip1">5 × 10 Climate</div><div class="orbit-pip pip2">10 × 20 Drive-up</div></div></div>
       <div class="grid4">
         <div class="metric"><div class="metric-label">Landmark unit listings</div><div class="metric-num" id="metric-lm">28</div><div class="metric-detail">Publicly displayed rate cards</div></div>
-        <div class="metric"><div class="metric-label">Competitor offers</div><div class="metric-num" id="metric-offers">68</div><div class="metric-detail">Includes prices requiring review</div></div>
-        <div class="metric"><div class="metric-label">Locations with rates</div><div class="metric-num" id="metric-locations">15</div><div class="metric-detail">Out of 76 researched locations</div></div>
+        <div class="metric"><div class="metric-label">Competitor offers</div><div class="metric-num" id="metric-offers">68</div><div class="metric-detail">QA-screened base rates</div></div>
+        <div class="metric"><div class="metric-label">Locations with rates</div><div class="metric-num" id="metric-locations">15</div><div class="metric-detail">From current published coverage</div></div>
         <div class="metric"><div class="metric-label">Strict benchmark sizes</div><div class="metric-num">04</div><div class="metric-detail">3 climate + 1 drive-up size</div></div>
       </div>
       <div class="split sections">
@@ -294,6 +295,17 @@
       <div class="panel"><div class="catalog-toolbar"><input class="search" type="search" id="offer-search" placeholder="Search brand, branch or size..." aria-label="Search offers"><select class="select" id="offer-scope" aria-label="Location filter"><option value="all">All registered locations</option><option value="direct">Greater Saint John</option></select><select class="select" id="offer-city" aria-label="Filter offer library by city"></select><select class="select" id="offer-quality" aria-label="Price quality filter"><option value="all">All price records</option><option value="priced">Usable base rates</option><option value="review">Requires review</option></select></div><div class="table-wrap"><table class="table" aria-label="Competitor prices"><thead><tr><th>Operator / location</th><th>Size</th><th>Product</th><th>Advertised base</th><th>Intro offer</th><th>Monthly equivalent</th><th>Data quality</th><th>Evidence</th></tr></thead><tbody id="offer-body"></tbody></table></div><div class="pager"><span id="offer-paging"></span><div><button type="button" id="offers-prev">Previous</button> <button type="button" id="offers-next">Next</button></div></div></div>
       <div class="notice"><strong>Read before comparing:</strong> Mini Mall introductory rates are not standard recurring rates; billing is every four weeks and additional charges may apply. An unpriced or ambiguous record is deliberately shown as “Review”, never as $0. Only branch-attributable Apple evidence is eligible; unknown billing terms and unmatched branches are excluded from firm rankings.</div>
     </section>
+    <section id="view-raw-evidence" class="view">
+      <div class="page-intro"><div><div class="section-kicker">Research / audit trail</div><h1 class="title">Observed rates. <span style="color:#a77735">Not yet comparable.</span></h1><p class="body">Prices collected from public sources which did not pass QA. Values below are raw advertised observations — not verified monthly rent, market averages, or prices to use for Landmark benchmarking.</p></div><span class="page-tag">REVIEW ONLY · SOURCE-LINKED</span></div>
+      <div class="grid4" style="margin:18px 0 22px"><div class="metric"><div class="metric-label">Pending review observations</div><div class="metric-num" id="v36-review-count">0</div><div class="metric-detail">Not included in pricing comparisons</div></div><div class="metric"><div class="metric-label">With visible raw price</div><div class="metric-num" id="v36-observed-count">0</div><div class="metric-detail">Billing basis may be unknown</div></div><div class="metric"><div class="metric-label">Conflicting billing terms</div><div class="metric-num" id="v36-conflict-count">0</div><div class="metric-detail">Evidence must be reconciled</div></div><div class="metric"><div class="metric-label">Eligible published rates</div><div class="metric-num" id="v36-eligible-count">0</div><div class="metric-detail">Separate QA-approved offer library</div></div></div>
+      <div class="panel"><div class="panel-head"><div><div class="section-kicker">Unresolved public rate evidence</div><h2>Review queue</h2><p class="sub">A visible amount is not automatically a monthly equivalent. For conflicting terms, check the operator's live rental contract before making a pricing decision.</p></div><span class="tiny-pill warn">NOT RANKED</span></div>
+        <div class="catalog-toolbar"><input type="search" class="search" id="v36-review-search" placeholder="Search brand, branch, city or issue..." aria-label="Search raw rate evidence"><select id="v36-review-filter" class="select" aria-label="Raw evidence filter"><option value="all">All review records</option><option value="billing">Billing conflict / unknown</option><option value="priced">Advertised price recorded</option><option value="unpriced">No unambiguous price</option></select></div>
+        <p id="v36-review-meta" class="sub" aria-live="polite"></p>
+        <div class="table-wrap"><table class="table"><thead><tr><th>Operator / location</th><th>Unit</th><th>Raw advertised rate</th><th>Billing status</th><th>Why review is required</th><th>Observed</th><th>Source</th></tr></thead><tbody id="v36-review-body"></tbody></table></div>
+        <div class="pager"><span id="v36-review-paging"></span><div><button type="button" id="v36-review-prev">Previous</button> <button type="button" id="v36-review-next">Next</button></div></div>
+      </div>
+      <div class="notice"><strong>Saint John You-Store example:</strong> its unit cards label $84 (8×5), $134 (8×8) and $258 (8×16) as “per month,” while the operator's homepage says the billing cycle is four weeks. The 8×20 card contains multiple advertised amounts. These observations stay visible here but are excluded from monthly price rankings until the billing terms and multiple rates are resolved.</div>
+    </section>
     <section id="view-evidence" class="view">
       <div class="page-intro"><div><div class="section-kicker">Data integrity</div><h1 class="title">The evidence <span style="color:#108e84">behind the view.</span></h1><p class="body">This report covers the current research registry, but live price observations exist for only a portion. Source coverage is not completeness.</p></div><span class="page-tag">AUDITABLE SNAPSHOT</span></div>
       <div class="panel"><div class="panel-head"><div><div class="section-kicker">06 / Coverage quality</div><h2>Registered facilities ≠ priced facilities.</h2><p class="sub">Most recently retained crawler classifications, with dates per source.</p></div></div><div id="coverage-numbers" class="grid4"></div><div class="coverage-progress" id="coverage-progress"></div><div class="coverage-legend" id="coverage-legend"></div></div>
@@ -336,7 +348,7 @@ function kind(o,lm){
  if(lm.unit_type==='drive_up')return o.climate==='no'&&o.brand==='Mini Mall Storage'?'strict':o.brand==='Nest Self Storage'?'context':o.climate==='yes'?'different':'context';
  return 'context';
 }
-function setView(name){curr.view=name;$$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));if(name==='pricing')renderPricing();if(name==='cities')cityRender();if(name==='value')v9Render();if(name==='services')renderServices();if(name==='catalog')renderOffers();if(name==='evidence')renderCoverage();window.scrollTo({top:0,behavior:'smooth'});}
+function setView(name){curr.view=name;$$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));if(name==='pricing')renderPricing();if(name==='cities')cityRender();if(name==='value')v9Render();if(name==='services')renderServices();if(name==='catalog')renderOffers();if(name==='evidence')renderCoverage();if(name==='raw-evidence')v36RenderRawEvidence();window.scrollTo({top:0,behavior:'smooth'});}
 $$('.nav-btn').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
 $$('[data-goto]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.goto)));
 function renderOverview(){
@@ -1023,6 +1035,47 @@ document.getElementById('v31-show-leads').addEventListener('change',event=>{v31S
 
 document.getElementById('pricing-city').addEventListener('change',e=>{curr.city=e.target.value;renderPricing();});
 
+/* V36 raw evidence: distinct from DATA.offers and all published benchmark logic. */
+const v36ReviewState={page:0,pageSize:15};
+function v36RawIsPriced(u){return (u.price_regular_cad!==null&&u.price_regular_cad!==undefined&&u.price_regular_cad!=='') || (u.price_intro_cad!==null&&u.price_intro_cad!==undefined&&u.price_intro_cad!=='');}
+function v36BillingConflict(u){return u.billing_period_status==='conflict' || (Array.isArray(u.flags)&&u.flags.some(f=>String(f).includes('billing_conflict'))) || String(u.billing_period_evidence||'').toLowerCase().includes('conflict');}
+function v36RenderRawEvidence(){
+ const all=Array.isArray(DATA.raw_rate_evidence)?DATA.raw_rate_evidence:[];
+ const priced=all.filter(v36RawIsPriced).length, conflicts=all.filter(v36BillingConflict).length;
+ document.getElementById('v36-review-count').textContent=all.length.toLocaleString('en-CA');
+ document.getElementById('v36-observed-count').textContent=priced.toLocaleString('en-CA');
+ document.getElementById('v36-conflict-count').textContent=conflicts.toLocaleString('en-CA');
+ document.getElementById('v36-eligible-count').textContent=(DATA.qa_publication?.qa_eligible??DATA.offers.length).toLocaleString('en-CA');
+ const q=document.getElementById('v36-review-search').value.trim().toLowerCase();
+ const filter=document.getElementById('v36-review-filter').value;
+ const arr=all.filter(u=>{
+  const issue=[u.brand,u.branch,u.city,u.price_status,u.billing_period_evidence,...(Array.isArray(u.national_qa_issues)?u.national_qa_issues:[]),...(Array.isArray(u.flags)?u.flags:[])].join(' ').toLowerCase();
+  if(q&&!issue.includes(q))return false;
+  if(filter==='billing'&&!((u.national_qa_issues||[]).includes('unresolved_rate_or_billing')||v36BillingConflict(u)))return false;
+  if(filter==='priced'&&!v36RawIsPriced(u))return false;
+  if(filter==='unpriced'&&v36RawIsPriced(u))return false;
+  return true;
+ });
+ const pageSize=v36ReviewState.pageSize;
+ v36ReviewState.page=Math.max(0,Math.min(v36ReviewState.page,Math.max(0,Math.ceil(arr.length/pageSize)-1)));
+ const subset=arr.slice(v36ReviewState.page*pageSize,(v36ReviewState.page+1)*pageSize);
+ document.getElementById('v36-review-body').innerHTML=subset.map(u=>{
+  const raw=v36RawIsPriced(u)?money(u.price_regular_cad??u.price_intro_cad):'Unresolved / multiple advertised rates';
+  const status=v36BillingConflict(u)?'Conflicting terms':u.billing_period==='4_weeks'?'4-week rate':u.billing_period==='month'?'Calendar month':u.billing_period==='30_days'?'30-day rate':'Billing not verified';
+  const issue=(Array.isArray(u.national_qa_issues)?u.national_qa_issues:[]).join(', ')||'Review required';
+  const dimension=(u.width_ft!==null&&u.length_ft!==null)?esc(String(u.width_ft)+'×'+String(u.length_ft)):'Unknown size';
+  const evidence=u.billing_period_evidence?'<div class="small">'+esc(u.billing_period_evidence)+'</div>':'';
+  return '<tr><td><strong>'+esc(u.brand)+'</strong><div class="small">'+esc(u.branch)+' · '+esc(u.city)+'</div></td><td>'+dimension+'<div class="small">'+esc(u.unit_type||'')+'</div></td><td><strong>'+raw+'</strong><div class="small">As advertised; period unverified</div></td><td><span class="flag warn">'+esc(status)+'</span>'+evidence+'</td><td>'+esc(issue)+'</td><td>'+esc(String(u.observed_at||'').slice(0,10))+'</td><td>'+a(u.source_url,'Official page')+'</td></tr>';
+ }).join('')||'<tr><td colspan="7" style="padding:30px;text-align:center">No review evidence matches this filter. If viewing an offline backup, refresh the published site after the next V36 QA publication.</td></tr>';
+ document.getElementById('v36-review-paging').textContent=(arr.length?v36ReviewState.page*pageSize+1:0)+'–'+Math.min((v36ReviewState.page+1)*pageSize,arr.length)+' of '+arr.length+' review records';
+ document.getElementById('v36-review-prev').disabled=v36ReviewState.page===0;
+ document.getElementById('v36-review-next').disabled=(v36ReviewState.page+1)*pageSize>=arr.length;
+ document.getElementById('v36-review-meta').textContent='Source-linked raw observations, never included in city price benchmarks or base-rate medians.';
+}
+['v36-review-search','v36-review-filter'].forEach(id=>document.getElementById(id).addEventListener(id==='v36-review-search'?'input':'change',()=>{v36ReviewState.page=0;v36RenderRawEvidence();}));
+document.getElementById('v36-review-prev').addEventListener('click',()=>{v36ReviewState.page--;v36RenderRawEvidence();});
+document.getElementById('v36-review-next').addEventListener('click',()=>{v36ReviewState.page++;v36RenderRawEvidence();});
+
 /* V11 public-data feed. We retain embedded V10 records only for offline/fetch-error fallback.
    A failed or invalid remote response NEVER clears existing rates. */
 let lastPublishedFingerprint='';
@@ -1046,7 +1099,7 @@ function applyPublishedData(next){
   localIds.clear();DATA.coverage.filter(x=>x.tier==='direct').forEach(x=>localIds.add(x.brand+'|'+x.branch));
   const svcCount=document.getElementById('service-total-dimensions');if(svcCount)svcCount.textContent=DATA.services.length;
   const intro=document.querySelector('#view-catalog .page-intro .body');if(intro)intro.textContent='All '+DATA.offers.length+' retained competitor offer records. Each rate has its own source and observation date; unresolved prices are unranked.';
-  cityUpdateOptions();renderOverview();renderPricing();renderServices();renderOffers();renderCoverage();v9Render();cityRender();v31RenderLandmark();
+  cityUpdateOptions();renderOverview();renderPricing();renderServices();renderOffers();renderCoverage();v9Render();cityRender();v31RenderLandmark();v36RenderRawEvidence();
   lastPublishedFingerprint=fingerprint;
  }
  syncLabel('PUBLISHED DATA', next.sync?.crawler_run_at_utc||next.crawler_run_generated_at||next.updated);
