@@ -214,6 +214,26 @@ select option.v40-youstore-option{color:var(--v40-orange-strong);font-weight:750
 @media(max-width:1040px){#v40-legend{display:none}}
 @media(max-width:690px){.v40-youstore-name::before{font-size:.5em}}
 
+
+/* V41 — Management-selected You-Store as nearby-area context in Price Explorer.
+   Orange intentionally means selected/reviewed, not climate or billing equivalence. */
+.v41-near-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:19px 0 8px;padding:13px 14px;background:#fff3e5;border:1px solid #f0c292;border-radius:10px;color:#9a4807}
+.v41-near-heading strong{font-size:12px;font-weight:850;letter-spacing:.01em}
+.v41-near-heading span{font-size:10px;font-weight:750;background:#ffe3c3;border:1px solid #eab579;border-radius:20px;padding:5px 9px}
+.v41-near-intro{font-size:11px;line-height:1.65;color:#955d29;margin:0 0 8px}
+.v41-near-item{display:grid;grid-template-columns:minmax(170px,1fr) minmax(145px,1.1fr) auto;gap:12px;align-items:center;margin:7px 0;padding:13px 14px;background:#fff8ef;border:1px solid #f3cfaa;border-left:4px solid #d98228;border-radius:10px}
+.v41-near-item:hover{background:#fff0da}
+.v41-near-item .v41-near-name{font-size:12px;line-height:1.55;color:#9a4807;font-weight:820}
+.v41-near-item small{display:block;color:#956a45;font-size:10px;line-height:1.6;margin-top:3px}
+.v41-near-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.v41-near-meta em{font-size:9px;font-style:normal;border-radius:15px;padding:3px 7px;background:#ffead4;color:#9a4f0a;border:1px solid #f0c99b;font-weight:750}
+.v41-near-item .v41-near-area{font-size:12px;font-weight:780;color:#9a4807;white-space:nowrap}
+.v41-near-item .v41-near-price{font-size:16px;font-weight:880;color:#9a4807;text-align:right;white-space:nowrap}
+.v41-near-item .v41-near-price small{white-space:normal;max-width:210px;margin-left:auto}
+.v41-near-item .dotlink{color:#b76516!important;font-size:10px}
+.v41-near-alert{padding:10px 12px;border-radius:8px;background:#fff8ef;color:#875727;border:1px solid #f1d6b5;font-size:10px;line-height:1.7;margin-top:8px}
+@media(max-width:770px){.v41-near-item{grid-template-columns:1fr auto;gap:8px}.v41-near-item .v41-near-area{grid-column:1/-1}.v41-near-item .v41-near-price{grid-column:2;grid-row:1;max-width:135px}}
+@media(max-width:420px){.v41-near-item{grid-template-columns:1fr}.v41-near-item .v41-near-price{grid-row:auto;grid-column:1;text-align:left;max-width:none}.v41-near-item .v41-near-price small{margin-left:0}}
 </style>
 </head>
 <body>
@@ -563,6 +583,38 @@ function renderPricing(){
   const min=Math.min(...strict.map(o=>o.base_normalized_month_cad));const pct=(lmMin/min-1)*100;
   graph+=`<div class="spotlight"><b>Minimum observed price difference: ${pct>=0?'+':''}${pct.toFixed(1)}%</b> vs the lowest compatible peer base rate. This is not a market-wide rank and excludes unconfirmed add-on fees.</div>`;
  }else graph+='<div class="empty"><b>No exact confirmed peer rate in this snapshot.</b><span>Landmark still has a published price, but comparable competitors may not publish the same footprint and climate specifications.</span></div>';
+
+ // V41: do not force You-Store into exact-size / identical-climate cohorts.
+ // Display the nearest publicly listed areas as ORANGE, explicitly different-format research context.
+ if(curr.cat!=='outdoor_parking' && units.length && cityOfferFilter({city:V39_STORE.city,province:V39_STORE.province,brand:V39_STORE.brand},curr.city)){
+  const selectedArea=Number(units[0].area_sqft)||Number(units[0].width_ft)*Number(units[0].length_ft);
+  if(Number.isFinite(selectedArea)&&selectedArea>0){
+   const approvalItems=V39_STORE.rates.map(r=>{
+    const unit=DATA.offers.find(o=>o.facility_id===V39_STORE.facility&&Number(o.width_ft)===r.w&&Number(o.length_ft)===r.l&&Number(o.price_regular_cad)>0);
+    return {w:r.w,l:r.l,area:r.w*r.l,rate:unit?Number(unit.price_regular_cad):r.price,review:false,src:unit?.source_url||V39_STORE.units};
+   });
+   // An 8x20 card is publicly visible with two different amounts. It is never promoted to a regular price.
+   const ambiguous=(DATA.raw_rate_evidence||[]).find(r=>r.facility_id===V39_STORE.facility&&Number(r.width_ft)===8&&Number(r.length_ft)===20);
+   if(ambiguous)approvalItems.push({w:8,l:20,area:160,rate:null,review:true,src:ambiguous.source_url||V39_STORE.units});
+   const nearby=approvalItems.map(o=>({...o,diff:100*(o.area-selectedArea)/selectedArea})).sort((a,b)=>Math.abs(a.diff)-Math.abs(b.diff)||a.area-b.area).slice(0,2);
+   graph+=`<div class="v41-near-heading"><strong>● SAINT JOHN YOU-STORE · NEAREST UNIT SIZES</strong><span>MANAGEMENT SELECTED · NOT DIRECT MATCHES</span></div>`;
+   graph+='<p class="v41-near-intro">Closest area to the selected Landmark unit, even if dimensions and climate/access differ. Orange means management-selected research context, not a verified same-product benchmark.</p>';
+   for(const o of nearby){
+    const delta=(o.diff>=0?'+':'')+o.diff.toFixed(1)+'%';
+    const fit=Math.abs(o.diff)>40?'Nearest available · substantial area gap':'Near-size only';
+    const listing=o.review?'$226 / $326 · unresolved':money(o.rate);
+    const alternate=o.review?'Two displayed amounts; regular price not established.':`${money(o.rate)} as advertised /month · ${money(o.rate*13/12)} calendar-month equivalent if billed every 4 weeks`;
+    const kindLabel=curr.cat==='indoor_storage'?'Outdoor drive-up, non-climate vs Landmark indoor climate':'Outdoor drive-up · nearest area, not the exact footprint';
+    graph+=`<div class="v41-near-item" title="Management-selected competitor. Approximate area only; climate, size and billing differences prevent a direct ranking.">
+     <div><div class="v41-near-name">${esc(V39_STORE.brand)}</div><small>${esc(V39_STORE.branch)} · Saint John · ${o.w}×${o.l} ft (${o.area} ft²)</small>
+     <div class="v41-near-meta"><em>${fit}</em><em>${o.review?'Review only':'Management accepted source price'}</em></div></div>
+     <div><div class="v41-near-area">${delta} area vs Landmark ${esc(curr.size)}</div><small>${esc(kindLabel)}. NOT included in lowest compatible peer, market rank or direct-match percentage.</small></div>
+     <div class="v41-near-price">${listing}<small>${esc(alternate)}</small>${a(o.src,'Official units ↗')}</div>
+    </div>`;
+   }
+   graph+='<div class="v41-near-alert"><b>Evidence policy:</b> You-Store units are nearest by floor area only. Their outdoor drive-up / non-climate configuration is not an indoor climate-controlled equivalent. The listing says “per month”, but the website also refers to four-week billing. The 8×20 amounts remain unresolved. Orange rows never change strict peer comparisons or Landmark price premiums.</div>';
+  }
+ }
  graph+='<div class="group-title"><span>EXACT SIZE · DIFFERENT / UNCONFIRMED SPECS</span><span>'+context.length+' listed</span></div>';
  if(context.length){graph+=context.slice(0,14).map(o=>`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #eef3f5"><span style="font-size:11px"><b>${esc(o.brand)}</b> <span style="color:#91a1ac">· ${esc(o.branch)}</span><br><small style="color:#8a99a7">${o.climate==='no'||o.brand==='Nest Self Storage'?'Non-climate product / facility':o.climate==='yes'?'Different product type':'Climate / type not confirmed'}</small></span><span style="text-align:right;white-space:nowrap"><b style="font-size:13px">${money(o.base_normalized_month_cad)}</b><br>${a(o.source_url,'Source ↗')}</span></div>`).join('');}
  else graph+='<p class="sub">No other exact-size public offers extracted.</p>';
